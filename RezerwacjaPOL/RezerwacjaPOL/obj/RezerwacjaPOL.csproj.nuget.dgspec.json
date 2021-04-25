@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Konserwa\\source\\gitrepo\\WebowaRezerwa\\RezerwacjaPOL\\RezerwacjaPOL\\RezerwacjaPOL.csproj": {}
+    "C:\\Users\\Konserwa\\source\\gitrepo\\RezerwacjaPOL\\RezerwacjaPOL\\RezerwacjaPOL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Konserwa\\source\\gitrepo\\WebowaRezerwa\\RezerwacjaPOL\\RezerwacjaPOL\\RezerwacjaPOL.csproj": {
+    "C:\\Users\\Konserwa\\source\\gitrepo\\RezerwacjaPOL\\RezerwacjaPOL\\RezerwacjaPOL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Konserwa\\source\\gitrepo\\WebowaRezerwa\\RezerwacjaPOL\\RezerwacjaPOL\\RezerwacjaPOL.csproj",
+        "projectUniqueName": "C:\\Users\\Konserwa\\source\\gitrepo\\RezerwacjaPOL\\RezerwacjaPOL\\RezerwacjaPOL.csproj",
         "projectName": "RezerwacjaPOL",
-        "projectPath": "C:\\Users\\Konserwa\\source\\gitrepo\\WebowaRezerwa\\RezerwacjaPOL\\RezerwacjaPOL\\RezerwacjaPOL.csproj",
+        "projectPath": "C:\\Users\\Konserwa\\source\\gitrepo\\RezerwacjaPOL\\RezerwacjaPOL\\RezerwacjaPOL.csproj",
         "packagesPath": "C:\\Users\\Konserwa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Konserwa\\source\\gitrepo\\WebowaRezerwa\\RezerwacjaPOL\\RezerwacjaPOL\\obj\\",
+        "outputPath": "C:\\Users\\Konserwa\\source\\gitrepo\\RezerwacjaPOL\\RezerwacjaPOL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Konserwa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,20 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -57,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
