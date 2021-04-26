@@ -23,6 +23,9 @@ namespace RezerwacjaPOLLibrary.Models
 
         public string PhoneNumber { get; set; }
         
-
+        public Auction()
+        {
+            CreatedOn = DateTime.Now;
+        }
     }
 }
