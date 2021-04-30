@@ -29,7 +29,7 @@ namespace RezerwacjaPOL
             services.AddControllersWithViews()
                 .AddFluentValidation();
             services.AddTransient<IValidator<User>, UserValidator>();
-            
+            services.AddTransient<IValidator<Auction>, AuctionValidator>();
 
         }
 
