@@ -1,8 +1,12 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RezerwacjaPOLLibrary.Models;
+using RezerwacjaPOLLibrary.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +26,11 @@ namespace RezerwacjaPOL
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddFluentValidation();
+            services.AddTransient<IValidator<User>, UserValidator>();
+            services.AddTransient<IValidator<Auction>, AuctionValidator>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
