@@ -22,7 +22,9 @@ namespace RezerwacjaPOLLibrary.Models
         public List<string> PhotosPath { get; set; }
 
         public string PhoneNumber { get; set; }
-        
+
+        public virtual User User { get; set; }
+
         public Auction()
         {
             CreatedOn = DateTime.Now;
