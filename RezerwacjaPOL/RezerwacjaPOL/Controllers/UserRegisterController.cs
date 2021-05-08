@@ -35,9 +35,28 @@ namespace RezerwacjaPOL.Controllers
             return View();
         }
 
+        static string SaveImage(AuctionContext context, UserViewModel user)
+        {
+            if (user.Avatar.Length > 0)
+            {
+                string wwwRothPath = _enviroment.WebRootPath;
+                string fileExtension = Path.GetExtension(user.Avatar.FileName);
+                var userCount = context.Users.Count() + 1;
+                string filePathLocal = userCount.ToString() + fileExtension;
+                var filePathRoot = Path.Combine(wwwRothPath + "/Files/" + filePathLocal);
+
+                using (var stream = System.IO.File.Create(filePathRoot))
+                {
+                    user.Avatar.CopyTo(stream);
+                    return filePathLocal;
+                }
+
+            }
+            else return "default.png";
+        }
+
         static void InsertUser(AuctionContext context, UserViewModel user)
         {
-
             context.Users.Add(new User
             {
                 FirstName = user.FirstName,
@@ -46,7 +65,6 @@ namespace RezerwacjaPOL.Controllers
                 Password = user.Password,
                 AvatarPath = user.AvatarPath
             });
-            context.SaveChanges();
         }
     }
 }
