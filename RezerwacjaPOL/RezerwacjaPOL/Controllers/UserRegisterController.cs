@@ -28,7 +28,8 @@ namespace RezerwacjaPOL.Controllers
                 using (var context = new AuctionContext())
                 {
                     context.Database.EnsureCreated();
-                    //Insert()
+                    user.AvatarPath = SaveImage(context, user);
+                    InsertUser(context, user);
                     context.SaveChanges();
                 }
             }
@@ -65,6 +66,12 @@ namespace RezerwacjaPOL.Controllers
                 Password = user.Password,
                 AvatarPath = user.AvatarPath
             });
+        }
+
+        public UserRegisterController(IHostingEnvironment environment, IConfiguration configuration)
+        {
+            _enviroment = environment;
+            _configuration = configuration;
         }
     }
 }
