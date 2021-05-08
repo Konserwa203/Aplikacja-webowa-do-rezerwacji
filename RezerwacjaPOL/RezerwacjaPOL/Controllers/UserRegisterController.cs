@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using RezerwacjaPOLLibrary.Context;
+using RezerwacjaPOLLibrary.Models;
 using RezerwacjaPOLLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,14 +14,16 @@ namespace RezerwacjaPOL.Controllers
 {
     public class UserRegisterController : Controller
     {
+        private static IHostingEnvironment _enviroment;
+        private static IConfiguration _configuration;
         public IActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Index(UserViewModel userViewModel)
+        public IActionResult Index(UserViewModel user)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 using (var context = new AuctionContext())
                 {
@@ -25,11 +31,22 @@ namespace RezerwacjaPOL.Controllers
                     //Insert()
                     context.SaveChanges();
                 }
-
             }
-           
-
             return View();
+        }
+
+        static void InsertUser(AuctionContext context, UserViewModel user)
+        {
+
+            context.Users.Add(new User
+            {
+                FirstName = user.FirstName,
+                Email = user.Email,
+                LastName = user.LastName,
+                Password = user.Password,
+                AvatarPath = user.AvatarPath
+            });
+            context.SaveChanges();
         }
     }
 }
