@@ -42,7 +42,7 @@ namespace RezerwacjaPOL.Controllers
             {
                 string wwwRothPath = _enviroment.WebRootPath;
                 string fileExtension = Path.GetExtension(user.Avatar.FileName);
-                var userCount = context.Users.Count();
+                var userCount = context.Users.Count() + 1;
                 string filePathLocal = userCount.ToString() + fileExtension;
                 var filePathRoot = Path.Combine(wwwRothPath + "/Files/" + filePathLocal);
 
@@ -51,6 +51,7 @@ namespace RezerwacjaPOL.Controllers
                     user.Avatar.CopyTo(stream);
                     return filePathLocal;
                 }
+
             }
             else return "default.png";
         }
@@ -65,7 +66,6 @@ namespace RezerwacjaPOL.Controllers
                 Password = user.Password,
                 AvatarPath = user.AvatarPath
             });
-            context.SaveChanges();
         }
 
         public UserRegisterController(IHostingEnvironment environment, IConfiguration configuration)
