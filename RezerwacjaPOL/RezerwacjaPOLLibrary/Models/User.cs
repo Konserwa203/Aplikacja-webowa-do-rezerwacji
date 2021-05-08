@@ -23,5 +23,7 @@ namespace RezerwacjaPOLLibrary.Models
         public string Password { get; set; }
         public string AvatarPath { get; set; }
 
+        public virtual ICollection<Auction> Auctions { get; set; }
+
     }
 }
