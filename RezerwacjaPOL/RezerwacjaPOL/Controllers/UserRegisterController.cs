@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RezerwacjaPOLLibrary.Context;
 using RezerwacjaPOLLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,17 @@ namespace RezerwacjaPOL.Controllers
         [HttpPost]
         public IActionResult Index(UserViewModel userViewModel)
         {
+            if(ModelState.IsValid)
+            {
+                using (var context = new AuctionContext())
+                {
+                    context.Database.EnsureCreated();
+                    //Insert()
+                    context.SaveChanges();
+                }
+
+            }
+           
 
             return View();
         }
