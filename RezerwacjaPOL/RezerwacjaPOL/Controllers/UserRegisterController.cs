@@ -51,7 +51,6 @@ namespace RezerwacjaPOL.Controllers
                     user.Avatar.CopyTo(stream);
                     return filePathLocal;
                 }
-
             }
             else return "default.png";
         }
@@ -66,6 +65,7 @@ namespace RezerwacjaPOL.Controllers
                 Password = user.Password,
                 AvatarPath = user.AvatarPath
             });
+            context.SaveChanges();
         }
 
         public UserRegisterController(IHostingEnvironment environment, IConfiguration configuration)
