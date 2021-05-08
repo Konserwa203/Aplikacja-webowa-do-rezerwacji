@@ -5,8 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RezerwacjaPOLLibrary\RezerwacjaPOLLibrary.csproj" />
     <ProjectReference Include="..\RezerwacjePOLTest\RezerwacjePOLTest.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Files\" />
+    <Folder Include="wwwroot\Files\" />
   </ItemGroup>
 
 </Project>
