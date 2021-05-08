@@ -13,12 +13,10 @@ namespace RezerwacjaPOLLibrary.Context
         public DbSet<Auction> Auctions { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<AuctionPhoto> AuctionPhotos { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+        public AuctionContext(DbContextOptions<AuctionContext> options) : base(options)
         {
-            optionsBuilder
-                .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-             // Todo - podmienić
-            base.OnConfiguring(optionsBuilder);
         }
+
     }
 }
