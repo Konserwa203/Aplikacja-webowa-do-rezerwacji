@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RezerwacjaPOLLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,12 @@ namespace RezerwacjaPOL.Controllers
     {
         public IActionResult Index()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Index(UserViewModel userViewModel)
+        {
+
             return View();
         }
     }
