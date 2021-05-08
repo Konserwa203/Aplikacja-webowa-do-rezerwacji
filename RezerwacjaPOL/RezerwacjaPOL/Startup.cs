@@ -2,9 +2,11 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RezerwacjaPOLLibrary.Context;
 using RezerwacjaPOLLibrary.Models;
 using RezerwacjaPOLLibrary.Validators;
 using System;
@@ -28,6 +30,8 @@ namespace RezerwacjaPOL
         {
             services.AddControllersWithViews()
                 .AddFluentValidation();
+
+            services.AddDbContext<AuctionContext>(o => o.UseSqlServer(Configuration.GetConnectionString("dev")));
             services.AddTransient<IValidator<User>, UserValidator>();
             services.AddTransient<IValidator<Auction>, AuctionValidator>();
 
