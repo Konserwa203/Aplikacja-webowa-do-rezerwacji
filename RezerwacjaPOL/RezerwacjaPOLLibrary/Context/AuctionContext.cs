@@ -12,6 +12,7 @@ namespace RezerwacjaPOLLibrary.Context
     {
         public DbSet<Auction> Auctions { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<AuctionPhoto> AuctionPhotos { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
