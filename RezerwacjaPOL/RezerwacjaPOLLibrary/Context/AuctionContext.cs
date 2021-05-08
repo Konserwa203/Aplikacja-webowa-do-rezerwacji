@@ -13,12 +13,10 @@ namespace RezerwacjaPOLLibrary.Context
         public DbSet<Auction> Auctions { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<AuctionPhoto> AuctionPhotos { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+        public AuctionContext(DbContextOptions<AuctionContext> options) : base(options)
         {
-            optionsBuilder
-                .UseSqlServer("Server=DESKTOP-FRI3VUI\\SQLEXPRESS;Database=TestingDbForRezerwacja;Trusted_Connection=True;");
-             // Todo - podmienić
-            base.OnConfiguring(optionsBuilder);
         }
+
     }
 }
