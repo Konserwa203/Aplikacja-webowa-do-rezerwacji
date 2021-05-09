@@ -22,6 +22,7 @@ namespace RezerwacjaPOL.Controllers
             return View();
         }
 
+        [HttpPost]
         [ActionName("Index")]
         public IActionResult IndexPost(LoginViewModel loginData)
         {
