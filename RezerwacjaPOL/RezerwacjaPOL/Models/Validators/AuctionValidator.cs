@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using RezerwacjaPOL.Models;
 using RezerwacjaPOLLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace RezerwacjaPOLLibrary.Validators
 {
-    public class AuctionValidator : AbstractValidator<Auction>
+    public class AuctionViewModelValidator : AbstractValidator<AuctionViewModel>
     {
-        public AuctionValidator()
+        public AuctionViewModelValidator()
         {
-            RuleFor(x => x.Id).GreaterThan(0);
-            RuleFor(x => x.Title).NotEmpty();
-            RuleFor(x => x.CreatedOn).NotNull();
-            RuleFor(x => x.Description).NotEmpty().MinimumLength(10).MaximumLength(750);
-            RuleFor(x => x.PhoneNumber).NotEmpty().MinimumLength(9).MaximumLength(12);
+
+            RuleFor(x => x.Title).NotEmpty().Length(10, 70);
+            RuleFor(x => x.Description).NotEmpty().Length(20, 1000);
+            RuleFor(x => x.PhoneNumber).NotEmpty().Length(9, 12);
         }
     }
 }
