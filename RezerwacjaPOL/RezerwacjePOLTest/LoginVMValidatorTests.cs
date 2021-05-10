@@ -52,6 +52,19 @@ namespace RezerwacjePOLTest
             Assert.IsFalse(result.IsValid);
         }
 
+        [Test]
+        public void ShouldNotValidateIfPasswordIsNotProvided()
+        {
+            var loginVM = new LoginViewModel
+            {
+                Email = "test@example.com",
+            };
+            var validator = new LoginVMValidator();
+
+            var result = validator.Validate(loginVM);
+
+            Assert.IsFalse(result.IsValid);
+        }
 
     }
 }
