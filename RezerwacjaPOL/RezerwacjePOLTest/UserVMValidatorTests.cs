@@ -14,7 +14,22 @@ namespace RezerwacjePOLTest
     [TestFixture]
     public class UserVMValidatorTests
     {
-       
+        [Test]
+        public void ShouldValidateIfAllRequiredPropertiesAreProvided()
+        {
+            var userVM = new UserViewModel
+            {
+                FirstName = "Mariusz",
+                LastName = "Pudzianowski",
+                Email = "Pudzian@ath.edu.pl",
+                Password = "silneJakJa"
+            };
+            var validator = new UserVMValidator();
+            var result = validator.Validate(userVM);
+
+            Assert.IsTrue(result.IsValid);
+
+        }
 
     }
 }

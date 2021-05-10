@@ -15,7 +15,7 @@ namespace RezerwacjaPOLLibrary.Validators
         {
             RuleFor(x => x.FirstName).NotEmpty().Length(2,45);
             RuleFor(x => x.LastName).NotEmpty().Length(2,90);
-            RuleFor(x => x.Email).NotEmpty().EmailAddress().Length(300);
+            RuleFor(x => x.Email).NotEmpty().EmailAddress().Length(15,300);
             RuleFor(x => x.Password).NotEmpty().Length(6,48);
 
         }
