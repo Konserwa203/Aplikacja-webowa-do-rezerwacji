@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RezerwacjaPOLLibrary\RezerwacjaPOLLibrary.csproj" />
-    <ProjectReference Include="..\RezerwacjePOLTest\RezerwacjePOLTest.csproj" />
   </ItemGroup>
 
   <ItemGroup>
