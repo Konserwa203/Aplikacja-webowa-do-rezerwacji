@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace RezerwacjaPOLLibrary.Validators
 {
-    public class AuctionViewModelValidator : AbstractValidator<AuctionViewModel>
+    public class AuctionVMValidator : AbstractValidator<AuctionViewModel>
     {
-        public AuctionViewModelValidator()
+        public AuctionVMValidator()
         {
 
             RuleFor(x => x.Title).NotEmpty().Length(10, 70);
