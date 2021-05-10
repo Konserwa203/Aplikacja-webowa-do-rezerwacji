@@ -82,5 +82,19 @@ namespace RezerwacjePOLTest
             Assert.IsFalse(result.IsValid);
         }
 
+        [Test]
+        public void ShouldNotValidateIfAllPropertiesAreWrong()
+        {
+            var userVM = new UserViewModel
+            {
+                FirstName = "M",
+                LastName = "P",
+                Email = "Pudzian@at.pl",
+                Password = "skJa"
+            };
+            var validator = new UserVMValidator();
+            var result = validator.Validate(userVM);
+            Assert.IsFalse(result.IsValid);
+        }
     }
 }
