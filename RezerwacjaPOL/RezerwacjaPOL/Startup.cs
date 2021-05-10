@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RezerwacjaPOL.Models;
+using RezerwacjaPOL.Models.Validators;
 using RezerwacjaPOLLibrary.Context;
 using RezerwacjaPOLLibrary.Models;
 using RezerwacjaPOLLibrary.Validators;
@@ -34,6 +36,7 @@ namespace RezerwacjaPOL
             services.AddDbContext<AuctionContext>(o => o.UseSqlServer(Configuration.GetConnectionString("dev")));
             services.AddTransient<IValidator<User>, UserValidator>();
             services.AddTransient<IValidator<Auction>, AuctionValidator>();
+            services.AddTransient<IValidator<LoginViewModel>, LoginVMValidator>();
 
         }
 
