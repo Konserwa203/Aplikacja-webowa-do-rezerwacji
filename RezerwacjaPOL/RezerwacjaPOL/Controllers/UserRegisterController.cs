@@ -16,6 +16,16 @@ namespace RezerwacjaPOL.Controllers
     {
         private static IHostingEnvironment _enviroment;
         private static IConfiguration _configuration;
+        private static AuctionContext _context;
+
+        public UserRegisterController(IHostingEnvironment environment, IConfiguration configuration, AuctionContext context)
+        {
+            _enviroment = environment;
+            _configuration = configuration;
+            _context = context;
+
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -25,13 +35,10 @@ namespace RezerwacjaPOL.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var context = new AuctionContext())
-                {
-                    context.Database.EnsureCreated();
-                    user.AvatarPath = SaveImage(context, user);
-                    InsertUser(context, user);
-                    context.SaveChanges();
-                }
+                _context.Database.EnsureCreated();
+                user.AvatarPath = SaveImage(_context, user);
+                InsertUser(_context, user);
+                _context.SaveChanges();
             }
             return View();
         }
@@ -68,10 +75,6 @@ namespace RezerwacjaPOL.Controllers
             context.SaveChanges();
         }
 
-        public UserRegisterController(IHostingEnvironment environment, IConfiguration configuration)
-        {
-            _enviroment = environment;
-            _configuration = configuration;
-        }
+
     }
 }
