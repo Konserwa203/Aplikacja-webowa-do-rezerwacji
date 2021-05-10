@@ -96,5 +96,24 @@ namespace RezerwacjePOLTest
             var result = validator.Validate(userVM);
             Assert.IsFalse(result.IsValid);
         }
+
+        [Test]
+        public void ShouldNotValidateIfValidationRequirementsAreNotMet(
+            [Values("m", "LoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsum")] string firstName,
+            [Values("n", "LoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsum")] string LastName,
+            [Values("mai@gmail.com", "mari.blednyemail.pl", "LoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsuLoremIpsumLoremIpsummLoremIpsumLoremIpsumLoremIpsumLoremIpsum")] string email,
+            [Values("xxx", "LoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsu")] string password)
+        {
+            var userVM = new UserViewModel
+            {
+                FirstName = firstName,
+                LastName = LastName,
+                Email = email,
+                Password = password
+            };
+            var validator = new UserVMValidator();
+            var result = validator.Validate(userVM);
+            Assert.IsFalse(result.IsValid);
+        }
     }
 }
