@@ -11,6 +11,7 @@ using RezerwacjaPOL.Models.Validators;
 using RezerwacjaPOLLibrary.Context;
 using RezerwacjaPOLLibrary.Models;
 using RezerwacjaPOLLibrary.Validators;
+using RezerwacjaPOLLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +35,8 @@ namespace RezerwacjaPOL
                 .AddFluentValidation();
 
             services.AddDbContext<AuctionContext>(o => o.UseSqlServer(Configuration.GetConnectionString("dev")));
-            services.AddTransient<IValidator<User>, UserValidator>();
-            services.AddTransient<IValidator<Auction>, AuctionValidator>();
+            services.AddTransient<IValidator<UserViewModel>, UserVMValidator>();
+            services.AddTransient<IValidator<AuctionViewModel>, AuctionVMValidator>();
             services.AddTransient<IValidator<LoginViewModel>, LoginVMValidator>();
 
         }
