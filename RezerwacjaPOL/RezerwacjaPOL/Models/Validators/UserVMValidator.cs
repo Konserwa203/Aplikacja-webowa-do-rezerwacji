@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace RezerwacjaPOLLibrary.Validators
 {
-    public class UserViewModelValidator : AbstractValidator<UserViewModel>
+    public class UserVMValidator : AbstractValidator<UserViewModel>
     {
-        public UserViewModelValidator()
+        public UserVMValidator()
         {
             RuleFor(x => x.FirstName).NotEmpty().Length(2,45);
             RuleFor(x => x.LastName).NotEmpty().Length(2,90);
