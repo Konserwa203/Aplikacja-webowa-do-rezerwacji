@@ -36,20 +36,20 @@ namespace RezerwacjaPOL.Controllers
             if (ModelState.IsValid)
             {
                 _context.Database.EnsureCreated();
-                user.AvatarPath = SaveImage(_context, user);
+                user.AvatarPath = SaveImage(user);
                 InsertUser(_context, user);
                 _context.SaveChanges();
             }
             return View();
         }
 
-        static string SaveImage(AuctionContext context, UserViewModel user)
+        static string SaveImage(UserViewModel user)
         {
             if (user.Avatar.Length > 0)
             {
                 string wwwRothPath = _enviroment.WebRootPath;
                 string fileExtension = Path.GetExtension(user.Avatar.FileName);
-                var userCount = context.Users.Count() + 1;
+                var userCount = _context.Users.Count() + 1;
                 string filePathLocal = userCount.ToString() + fileExtension;
                 var filePathRoot = Path.Combine(wwwRothPath + "/Files/" + filePathLocal);
 
