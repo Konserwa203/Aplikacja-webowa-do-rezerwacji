@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\BrandingImages\PanBookLogoWithNameBlack.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
@@ -15,6 +19,15 @@
   <ItemGroup>
     <Folder Include="wwwroot\Files\" />
     <Folder Include="wwwroot\Files\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\BrandingImages\PanBookFaviconBlack.svg" />
+    <None Include="wwwroot\BrandingImages\PanBookFaviconWhite.svg" />
+    <None Include="wwwroot\BrandingImages\PanBookLogoWithNameBlack.svg" />
+    <None Include="wwwroot\BrandingImages\PanBookLogoWithNameBlack.png" />
+    <None Include="wwwroot\BrandingImages\PanBook.png" />
+    <None Include="wwwroot\BrandingImages\PanBookLogoWithNameWhite.svg" />
   </ItemGroup>
 
 </Project>
