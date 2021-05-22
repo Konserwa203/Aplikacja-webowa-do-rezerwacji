@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RezerwacjaPOL.Controllers
 {
-    public class AddActionController : Controller
+    public class AddAuctionController : Controller
     {
         public IActionResult Index()
         {
