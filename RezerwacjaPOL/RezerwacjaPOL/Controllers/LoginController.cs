@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using RezerwacjaPOL.Models;
 using RezerwacjaPOLLibrary.Context;
 using RezerwacjaPOLLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace RezerwacjaPOL.Controllers
@@ -24,14 +27,21 @@ namespace RezerwacjaPOL.Controllers
 
         [HttpPost]
         [ActionName("Index")]
-        public IActionResult IndexPost(LoginViewModel loginData)
+        public async Task<IActionResult> IndexPostAsync(LoginViewModel loginData)
         {
             if (ModelState.IsValid)
             {
                 var user = _context.Users.FirstOrDefault(x => x.Email == loginData.Email && x.Password == loginData.Password);
                 if(user != null)
                 {
-                    return Ok(user);
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Email,user.Email)
+                    };
+
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    await HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
+                    return RedirectToAction("Index","Home");
                 }
             }
 
