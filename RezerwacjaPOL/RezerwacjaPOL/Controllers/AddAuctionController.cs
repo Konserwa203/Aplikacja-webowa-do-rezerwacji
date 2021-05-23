@@ -33,8 +33,37 @@ namespace RezerwacjaPOL.Controllers
         [HttpPost]
         public IActionResult Index(AuctionViewModel newAuction)
         {
-
+            if (ModelState.IsValid)
+            {
+                _context.Database.EnsureCreated();
+            }
             return View();
         }
+
+        static void InsertAuction(AuctionContext context, AuctionViewModel newAuction)
+        {
+            List<AuctionPhoto> ConvertedPaths = new List<AuctionPhoto>();
+
+            Auction auctionToAdd = new Auction();
+
+            foreach (var photo in newAuction.Photos)
+            {
+                AuctionPhoto auctionPhoto = new AuctionPhoto
+                {
+                    PhotoPath = ImageTool.SaveImage(photo, _enviroment),
+                    Auction = auctionToAdd
+                };
+                context.AuctionPhotos.Add(auctionPhoto);
+                ConvertedPaths.Add(auctionPhoto);
+            }
+
+            auctionToAdd.Title = newAuction.Title;
+            auctionToAdd.Description = newAuction.Description;
+            auctionToAdd.PhoneNumber = newAuction.PhoneNumber;
+            auctionToAdd.PhotosPath = ConvertedPaths;
+
+            context.Auctions.Add(auctionToAdd);
+            context.SaveChanges();
+        }        
     }
 }

@@ -32,7 +32,6 @@ namespace RezerwacjaPOLLibrary.Models
     {
         public int Id { get; set; }
         public string PhotoPath { get; set; }
-
         public virtual Auction Auction { get; set; }
 
     }
