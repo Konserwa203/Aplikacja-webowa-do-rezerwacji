@@ -13,8 +13,8 @@ namespace RezerwacjaPOLLibrary.Models
         public string Title { get; set; }
 
         public DateTime CreatedOn { get; set; }
+        public AuctionCategory Category { get; set; }
 
-        
         public string Description { get; set; }
 
         public virtual ICollection<AuctionPhoto> PhotosPath { get; set; }
