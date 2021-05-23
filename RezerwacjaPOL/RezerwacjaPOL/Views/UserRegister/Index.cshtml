@@ -1,32 +1,35 @@
 ﻿@model RezerwacjaPOLLibrary.ViewModels.UserViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Zarejestruj się teraz za darmo!";
 }
+<div class="bodyLike" style="color: white;
+        background-image: url(https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+        width: 100%;
+        height: 100%;">
 
-
-
+    <div class="box">
         <form asp-action="Index" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
+            <span class="text-center">Zarejestruj się za darmo!</span>
+            <div class="input-container">
+                <input asp-for="FirstName" />
+                <label asp-for="FirstName">Name</label>
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
+
+            <div class="input-container">
+                <input asp-for="LastName" />
+                <label asp-for="LastName">Email</label>
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+            <div class="input-container">
+                <input asp-for="Email" />
+                <label asp-for="Email">Email</label>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input type="password" asp-for="Password" class="form-control" />
+            <div class="input-container">
+                <input type="password" asp-for="Password" />
+                <label asp-for="Password">Password</label>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,13 +37,10 @@
                 <input type="file" asp-for="Avatar" class="form-control" />
                 <span asp-validation-for="Avatar" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+            <button type="submit" class="btn">submit</button>
         </form>
-
-
-
+    </div>
+</div>
 
 
 @section Scripts {
