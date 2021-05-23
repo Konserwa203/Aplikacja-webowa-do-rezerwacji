@@ -1,13 +1,15 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&subset=greek-ext');
 
 .bodyLike {
-    background-image: url("https://images.pexels.com/photos/891252/pexels-photo-891252.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-color:white;
+    background-image: url("https://image.freepik.com/free-photo/standing-courier-man-copy-space-background_23-2148419044.jpg");
+    /*background-image: url("~/BrandingImages/userRegisterBg.jpg");*/
     background-position: center;
     background-origin: content-box;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
-    width:100vw;
+    width: 100vw;
     color: white;
     font-family: 'Noto Sans', sans-serif;
 }
