@@ -14,6 +14,7 @@ namespace RezerwacjaPOL.Models
         public ICollection<IFormFile> Photos { get; set; }
         public string ThumbnailPhotoDir { get; set; }
         public DateTime DateAdded { get; set; }
+        public string Category { get; set; }
         //w razie potrzeby trzeba będzie tu coś pododawać
     }
 }
