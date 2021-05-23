@@ -13,6 +13,7 @@ namespace RezerwacjaPOLLibrary.Models
         public string Title { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
         public AuctionCategory Category { get; set; }
 
         public string Description { get; set; }
@@ -33,7 +34,6 @@ namespace RezerwacjaPOLLibrary.Models
     {
         public int Id { get; set; }
         public string PhotoPath { get; set; }
-
         public virtual Auction Auction { get; set; }
 
     }

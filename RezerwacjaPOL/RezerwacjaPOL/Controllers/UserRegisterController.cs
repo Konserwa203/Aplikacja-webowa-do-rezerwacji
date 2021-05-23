@@ -23,7 +23,6 @@ namespace RezerwacjaPOL.Controllers
             _enviroment = environment;
             _configuration = configuration;
             _context = context;
-
         }
 
         public IActionResult Index()
