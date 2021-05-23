@@ -1,0 +1,138 @@
+﻿@import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='hsl(0, 0%25, 20%25)' opacity='0.1' width='20' height='20' viewBox='-5 -5 10 10'%3E%3Ccircle id='dot' r='1' /%3E%3Cuse href='%23dot' x='5' y='5' /%3E%3Cuse href='%23dot' x='-5' y='5' /%3E%3Cuse href='%23dot' x='5' y='-5' /%3E%3Cuse href='%23dot' x='-5' y='-5' /%3E%3C/svg%3E"), hsl(0, 0%, 95%);
+    font-family: "Lato", sans-serif;
+    background-size: 10px;
+}
+
+    body > * + * {
+        margin-top: 2rem;
+    }
+/* svg */
+svg {
+    display: block;
+    width: 90vw;
+    max-width: 250px;
+    height: auto;
+    margin: 1rem;
+    color: hsl(0, 0%, 10%);
+}
+
+    /* when the .hide class is added to the svg scale the elements to show the closed eye */
+    svg.hide .eyelid,
+    svg.hide .brows {
+        transform: scaleY(-1);
+    }
+
+    svg.hide .eyeball {
+        transform: scale(0);
+    }
+
+/* for browsers supporting the d property transition the properties to have the eyes close/open */
+@supports (d: path("")) {
+    svg .eyelid,
+    svg .brows path,
+    svg .eyeball {
+        transition: transform 0.5s ease-in-out, d 0.5s ease-in-out;
+    }
+
+    svg.hide .eyelid,
+    svg.hide .brows,
+    svg.hide .eyeball {
+        transform: initial;
+    }
+
+    svg.hide .eyelid {
+        d: path("M -30 0 c 15 20 45 20 60 0");
+    }
+
+    svg.hide .eyeball {
+        transform: scaleY(0);
+    }
+
+    svg.hide .brows path:first-of-type {
+        d: path("M -16 12 q -5 0 -8 8");
+    }
+
+    svg.hide .brows path:nth-of-type(2) {
+        d: path("M 0 16 v 8");
+    }
+
+    svg.hide .brows path:last-of-type {
+        d: path("M 16 12 q 5 0 8 8");
+    }
+}
+
+/* form */
+/* display the elements in a column */
+form {
+    padding: 1.5rem 2rem;
+    background: hsl(0, 0%, 100%);
+    color: hsl(0, 0%, 10%);
+    max-width: 300px;
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 10px -8px currentColor;
+}
+
+    form > * + * {
+        margin-top: 0.5rem;
+    }
+
+    form label {
+        display: block;
+        font-weight: 700;
+    }
+
+    form input {
+        padding: 0.5rem;
+        border: 2px solid currentColor;
+        background: none;
+        font-size: 1rem;
+        font-family: inherit;
+        color: inherit;
+        outline: none;
+    }
+
+    form button {
+        background: hsl(0, 0%, 10%);
+        border: none;
+        color: hsl(0, 0%, 100%);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        font-family: inherit;
+        padding: 0.5rem 1rem;
+    }
+
+/* for browsers supporting grid properties create the following layout
+label label
+input button
+*/
+@supports (display: grid) {
+    form {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+
+        form label {
+            grid-column: 1/-1;
+        }
+
+        form input {
+            border-right: none;
+            width: 100%;
+        }
+}
