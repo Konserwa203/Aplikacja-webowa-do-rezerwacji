@@ -20,7 +20,7 @@ namespace RezerwacjaPOL
                 string fileExtension = Path.GetExtension(image.FileName);
                 var guid = Guid.NewGuid().ToString().Substring(0, 4);
                 string filePathLocal = guid + fileExtension;
-                var filePathRoot = Path.Combine(wwwrootPath + "/Files/" + filePathLocal);
+                var filePathRoot = Path.Combine(wwwrootPath + "\\Files\\" + filePathLocal);
 
                 using (var stream = System.IO.File.Create(filePathRoot))
                 {
