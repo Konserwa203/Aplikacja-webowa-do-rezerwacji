@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace RezerwacjaPOLLibrary.Models
 {
-    class AuctionCategory
+    public class AuctionCategory
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

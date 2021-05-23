@@ -28,7 +28,14 @@ namespace RezerwacjaPOLLibrary.Context
 
             context.AddRange(users);
             context.SaveChanges();
-
+            var categories = new AuctionCategory[]
+            {
+                new AuctionCategory{Name="Fryzjer"},
+                new AuctionCategory{Name="Tynkarz"},
+                new AuctionCategory{Name="Grafik"}
+            };
+            context.AddRange(categories);
+            context.SaveChanges();
             int i = 1;
             foreach (var user in users)
             {
@@ -39,18 +46,21 @@ namespace RezerwacjaPOLLibrary.Context
                         Title= $"Title {i++}",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut dapibus nulla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed commodo sollicitudin finibus. Phasellus id justo id libero porta egestas. Suspendisse et mauris vel urna gravida tristique.",
                         CreatedOn = DateTime.Now,
+                        Category = context.AuctionCategories.First(x=>x.Name=="Fryzjer")
                     },
                     new Auction
                     {
                         Title= $"Title {i++}",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut dapibus nulla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed commodo sollicitudin finibus. Phasellus id justo id libero porta egestas. Suspendisse et mauris vel urna gravida tristique.",
                         CreatedOn = DateTime.Now,
+                        Category = context.AuctionCategories.First(x=>x.Name=="Tynkarz")
                     },
                     new Auction
                     {
                         Title= $"Title {i++}",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut dapibus nulla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed commodo sollicitudin finibus. Phasellus id justo id libero porta egestas. Suspendisse et mauris vel urna gravida tristique.",
                         CreatedOn = DateTime.Now,
+                        Category = context.AuctionCategories.First(x=>x.Name=="Grafik")
                     }
                 };
             }
