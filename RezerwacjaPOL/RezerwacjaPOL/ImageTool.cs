@@ -12,7 +12,7 @@ namespace RezerwacjaPOL
     public static class ImageTool
     {
         //This class is created as a demonstration of the facade design pattern.
-        static string SaveImage(IFormFile image, IHostingEnvironment _environment)
+        public static string SaveImage(IFormFile image, IHostingEnvironment _environment)
         {
             if (image.Length > 0)
             {
