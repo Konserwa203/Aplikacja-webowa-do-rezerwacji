@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Index">
+        <form asp-action="Index" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
@@ -28,6 +28,11 @@
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Photos" class="control-label"></label><br />
+                <input type="file" asp-for="Photos" name="Photos" id="drop-zone" multiple="multiple"/>
+                <span asp-validation-for="Photos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -40,4 +45,37 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    @*<script src="~/Scripts/jquery.filedrop.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#drop-zone').filedrop({
+                fallback_id: 'upload_button',   // an identifier of a standard file input element, becomes the target of "click" events on the dropzone
+                url: '@Url.Action("UploadImage")',				// upload handler, handles each file separately, can also be a function taking the file and returning a url
+                paramname: 'files',			// POST parameter name used on serverside to reference file, can also be a function taking the filename and returning the paramname
+
+                allowedfiletypes: ['image/jpeg', 'image/png', 'image/gif'],	// filetypes allowed by Content-Type.  Empty array means no restrictions
+                allowedfileextensions: ['.jpg', '.jpeg', '.png', '.gif'], // file extensions allowed. Empty array means no restrictions
+                maxfiles: 1,
+                maxfilesize: 20, 	// max file size in MBs
+                dragOver: function () {
+                    $('#drop-zone').addClass('active-drop');
+                },
+                dragLeave: function () {
+                    $('#drop-zone').removeClass('active-drop');
+                },
+
+                drop: function () {
+                    // user drops file
+                    $('#drop-zone').removeClass('active-drop');
+                },
+
+                afterAll: function () {
+                    // runs after all files have been uploaded or otherwise dealt with
+                    $('#drop-zone').html('Pliki wysłano pomyślnie');
+                }
+            });
+        }
+    </script>*@
 }

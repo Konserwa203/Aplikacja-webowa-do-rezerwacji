@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RezerwacjaPOL.Models;
@@ -36,25 +37,37 @@ namespace RezerwacjaPOL.Controllers
             if (ModelState.IsValid)
             {
                 _context.Database.EnsureCreated();
+                InsertAuction(newAuction);
             }
             return View();
         }
 
-        static void InsertAuction(AuctionContext context, AuctionViewModel newAuction)
+        static void InsertAuction(AuctionViewModel newAuction)
         {
             List<AuctionPhoto> ConvertedPaths = new List<AuctionPhoto>();
 
             Auction auctionToAdd = new Auction();
 
-            foreach (var photo in newAuction.Photos)
+            if (newAuction.Photos != null)
             {
-                AuctionPhoto auctionPhoto = new AuctionPhoto
+                foreach (var photo in newAuction.Photos)
                 {
-                    PhotoPath = ImageTool.SaveImage(photo, _enviroment),
+                    AuctionPhoto auctionPhoto = new AuctionPhoto
+                    {
+                        PhotoPath = ImageTool.SaveImage(photo, _enviroment),
+                        Auction = auctionToAdd
+                    };
+                    _context.AuctionPhotos.Add(auctionPhoto);
+                    ConvertedPaths.Add(auctionPhoto);
+                }
+            }
+            else
+            {
+                ConvertedPaths.Add(new AuctionPhoto
+                {
+                    PhotoPath = "default.png",
                     Auction = auctionToAdd
-                };
-                context.AuctionPhotos.Add(auctionPhoto);
-                ConvertedPaths.Add(auctionPhoto);
+                });
             }
 
             auctionToAdd.Title = newAuction.Title;
@@ -62,8 +75,8 @@ namespace RezerwacjaPOL.Controllers
             auctionToAdd.PhoneNumber = newAuction.PhoneNumber;
             auctionToAdd.PhotosPath = ConvertedPaths;
 
-            context.Auctions.Add(auctionToAdd);
-            context.SaveChanges();
+            _context.Auctions.Add(auctionToAdd);
+            _context.SaveChanges();
         }        
     }
 }
