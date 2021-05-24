@@ -23,7 +23,6 @@ namespace RezerwacjaPOL.Controllers
             _enviroment = environment;
             _configuration = configuration;
             _context = context;
-
         }
 
         public IActionResult Index()
@@ -40,7 +39,7 @@ namespace RezerwacjaPOL.Controllers
                 InsertUser(_context, user);
                 _context.SaveChanges();
             }
-            return View();
+            return RedirectToAction("Index","Login");
         }
 
         static string SaveImage(UserViewModel user)

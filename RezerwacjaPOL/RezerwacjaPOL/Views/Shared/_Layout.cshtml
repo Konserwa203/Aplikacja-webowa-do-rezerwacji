@@ -6,6 +6,9 @@
     <title>@ViewData["Title"] - In development</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="icon"
+          type="icon"
+          href="~/SVGPanBookFavicon.svg">
 </head>
 <body>
     <header>
@@ -26,11 +29,11 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    @*<div class="container">
+        <main role="main" class="pb-3">*@
             @RenderBody()
-        </main>
-    </div>
+        @*</main>
+    </div>*@
 
     <footer class="border-top footer text-muted">
         <div class="container">

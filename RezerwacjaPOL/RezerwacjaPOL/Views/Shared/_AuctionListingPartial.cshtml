@@ -1,2 +1,43 @@
 ﻿@model IEnumerable<RezerwacjaPOL.Models.AuctionViewModel>;
 
+<link href="~/css/auctionListing.css" rel="stylesheet" />
+
+@foreach (var item in Model)
+{
+    <table class="table table-sm" style="width:100%;  box-shadow: 2px 2px 2px gray;">
+        <tbody>
+            <tr style="background-color:white; ">
+                <td style="width: 216px; height: 152px; margin:20px">
+                    <a href="">
+                        <img class="ThumbnailStyle" src="~/Photos/@item.ThumbnailPhotoDir" />
+                    </a>
+                </td>
+                <td style="margin: 20px">
+
+                    <h4 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 500px; font-weight: 100">
+                        <a class="ListTitle" href="">
+                            <strong>@Html.DisplayFor(modelItem => item.Title)</strong>
+                        </a>
+                    </h4>
+                </td>
+                <td>
+                    @{
+                        string onlyTime = "Dzisiaj " + item.DateAdded.TimeOfDay.ToString().Substring(0, 5);
+                        string onlyDate = item.DateAdded.ToString().Substring(0, 10);
+                    }
+                    <p class="categoryStyle">@Html.DisplayFor(modelItem => item.Category)</p>
+                    <p class="dateStyle">
+                        @if (item.DateAdded.Date == DateTime.Today)
+                        {
+                            @onlyTime
+                        }
+                        else
+                        {
+                            @onlyDate
+                        }
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
