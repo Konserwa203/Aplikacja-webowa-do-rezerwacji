@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RezerwacjaPOL.Models;
+using RezerwacjaPOLLibrary.Context;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,16 +12,28 @@ namespace RezerwacjaPOL.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly AuctionContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, AuctionContext context)
         {
+            _context = context;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var data = new HomeIndexViewModel
+            {
+                Auctions = _context.Auctions.Select(x => new AuctionViewModel
+                {
+                    Title = x.Title,
+                    ThumbnailPhotoDir = "23.png",
+                    Category = x.Category.Name,
+                    DateAdded = x.CreatedOn,
+                })
+            };
+            return View(data);
         }
 
         public IActionResult Privacy()
