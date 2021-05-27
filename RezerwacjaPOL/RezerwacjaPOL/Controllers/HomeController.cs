@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RezerwacjaPOL.Models;
 using RezerwacjaPOLLibrary.Context;
@@ -23,14 +24,18 @@ namespace RezerwacjaPOL.Controllers
 
         public IActionResult Index()
         {
+            var getData = _context.Auctions.Include(x => x.PhotosPath).ThenInclude(x => x.Auction.Category);
             var data = new HomeIndexViewModel
             {
-                Auctions = _context.Auctions.Select(x => new AuctionViewModel
+                Auctions = getData.Select(x => new AuctionViewModel
                 {
                     Title = x.Title,
-                    ThumbnailPhotoDir = "23.png",
+                    ThumbnailPhotoDir = x.PhotosPath.Select(x => x.PhotoPath).FirstOrDefault(),
                     Category = x.Category.Name,
                     DateAdded = x.CreatedOn,
+                    PhotosPath = x.PhotosPath,
+                    Description = x.Description
+
                 })
             };
             return View(data);
