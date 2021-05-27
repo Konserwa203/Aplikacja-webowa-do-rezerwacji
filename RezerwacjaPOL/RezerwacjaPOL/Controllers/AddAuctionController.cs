@@ -38,6 +38,7 @@ namespace RezerwacjaPOL.Controllers
             {
                 _context.Database.EnsureCreated();
                 InsertAuction(newAuction);
+                return RedirectToAction("Index","Home");
             }
             return View();
         }
