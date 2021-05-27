@@ -43,24 +43,38 @@ namespace RezerwacjaPOLLibrary.Context
                 {
                     new Auction
                     {
-                        Title= $"Title {i++}",
+                        Title= $"Usługi fryzjerskie - pon - pt 8-16 {i++}",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut dapibus nulla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed commodo sollicitudin finibus. Phasellus id justo id libero porta egestas. Suspendisse et mauris vel urna gravida tristique.",
                         CreatedOn = DateTime.Now,
-                        Category = context.AuctionCategories.First(x=>x.Name=="Fryzjer")
+                        Category = context.AuctionCategories.First(x=>x.Name=="Fryzjer"),
+                          PhotosPath = new List<AuctionPhoto>
+                         {
+                              new AuctionPhoto{ PhotoPath="fryzjer.png"}
+                         }
+
+
                     },
                     new Auction
                     {
-                        Title= $"Title {i++}",
+                        Title= $"Tynkowanie domu! {i++}",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut dapibus nulla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed commodo sollicitudin finibus. Phasellus id justo id libero porta egestas. Suspendisse et mauris vel urna gravida tristique.",
                         CreatedOn = DateTime.Now,
-                        Category = context.AuctionCategories.First(x=>x.Name=="Tynkarz")
+                        Category = context.AuctionCategories.First(x=>x.Name=="Tynkarz"),
+                          PhotosPath = new List<AuctionPhoto>
+                         {
+                              new AuctionPhoto{ PhotoPath="murarz.png"}
+                         }
                     },
                     new Auction
                     {
-                        Title= $"Title {i++}",
+                        Title= $"Usługi graficzne {i++}",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut dapibus nulla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed commodo sollicitudin finibus. Phasellus id justo id libero porta egestas. Suspendisse et mauris vel urna gravida tristique.",
                         CreatedOn = DateTime.Now,
-                        Category = context.AuctionCategories.First(x=>x.Name=="Grafik")
+                        Category = context.AuctionCategories.First(x=>x.Name=="Grafik"),
+                           PhotosPath = new List<AuctionPhoto>
+                         {
+                              new AuctionPhoto{ PhotoPath="grafik.png"}
+                         }
                     }
                 };
             }
