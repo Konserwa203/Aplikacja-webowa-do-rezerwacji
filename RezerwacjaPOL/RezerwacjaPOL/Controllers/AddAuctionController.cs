@@ -28,6 +28,8 @@ namespace RezerwacjaPOL.Controllers
         }
         public IActionResult Index()
         {
+            //ViewBag.Categories = GetCategoryStrings();
+            ViewBag.Categories = _context.AuctionCategories.ToList<AuctionCategory>();
             return View();
         }
 
@@ -48,6 +50,8 @@ namespace RezerwacjaPOL.Controllers
             List<AuctionPhoto> ConvertedPaths = new List<AuctionPhoto>();
 
             Auction auctionToAdd = new Auction();
+
+
 
             if (newAuction.Photos != null)
             {
@@ -75,9 +79,21 @@ namespace RezerwacjaPOL.Controllers
             auctionToAdd.Description = newAuction.Description;
             auctionToAdd.PhoneNumber = newAuction.PhoneNumber;
             auctionToAdd.PhotosPath = ConvertedPaths;
+            auctionToAdd.Category = _context.AuctionCategories.FirstOrDefault(x => x.Id == newAuction.CategoryId);
 
             _context.Auctions.Add(auctionToAdd);
             _context.SaveChanges();
         }        
+
+        static List<string> GetCategoryStrings()
+        {
+            List<AuctionCategory> tempList = _context.AuctionCategories.ToList<AuctionCategory>();
+            List<string> stringsList = new List<string>();
+            foreach(var item in tempList)
+            {
+                stringsList.Add(item.Name);
+            }
+            return stringsList;
+        }
     }
 }

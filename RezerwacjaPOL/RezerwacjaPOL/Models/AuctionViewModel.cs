@@ -15,8 +15,10 @@ namespace RezerwacjaPOL.Models
         public ICollection<IFormFile> Photos { get; set; }
         public string ThumbnailPhotoDir { get; set; }
         public DateTime DateAdded { get; set; }
-        public string Category { get; set; }
+        //public string Category { get; set; }
+        public AuctionCategory? Category { get; set; }
+        public int? CategoryId { get; set; }
+
         public virtual ICollection<AuctionPhoto> PhotosPath { get; set; }
-        //w razie potrzeby trzeba będzie tu coś pododawać
     }
 }
