@@ -31,12 +31,10 @@ namespace RezerwacjaPOL.Controllers
                 {
                     Title = x.Title,
                     ThumbnailPhotoDir = x.PhotosPath.Select(x => x.PhotoPath).FirstOrDefault(),
-                    //Category = x.Category.Name,
-                    //Category = x.Category,
+                    Category = x.Category,
                     DateAdded = x.CreatedOn,
                     PhotosPath = x.PhotosPath,
                     Description = x.Description
-
                 })
             };
             return View(data);
