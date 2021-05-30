@@ -1,18 +1,118 @@
 ﻿@model RezerwacjaPOL.Models.AuctionViewModel;
+<link href="~/lib/lightgallery/css/lightgallery.css" rel="stylesheet" />
+<link href="~/lib/lightSlider/css/lightslider.css" rel="stylesheet" />
 
-@Model.Title
-<br />
-@Model.Category.Name
-<br />
-@Model.DateAdded
-<br />
-@Model.Description
-<br />
-@Model.User.FirstName @Model.User.LastName
+<style>
+    body {
+        background-color: #F2F4F5;
+    }
 
-@foreach (var item in Model.PhotosPath)
+    .imgFit {
+        width: 100%;
+        height: 60vh;
+        object-fit:contain;
+    }
+    .imgContainer{
+       width:80%;
+       margin:auto;
+       background-color:white;
+                 
+    }
+    
+    
+</style>
+
+
+<div class="container">
+
+    <div class="imgContainer">
+        <ul id="imageGallery">
+            @foreach (var item in Model.PhotosPath)
+            {
+                <li data-thumb="/Files/@item.PhotoPath" data-src="/Files/@item.PhotoPath">
+                    <img class="imgFit" src="~/Files/@item.PhotoPath" />
+                </li>
+            }
+
+        </ul>
+    </div>
+
+
+
+
+    <div style="margin-top:30px; background-color:white; padding:15px;">
+
+        @{
+            string onlyTime = "Dodane dzisiaj o " + Model.DateAdded.TimeOfDay.ToString().Substring(0, 5);
+            string onlyDate = Model.DateAdded.ToString().Substring(0, 10);
+        }
+
+        <p style="padding-bottom:10px; margin:0;">
+            @if (Model.DateAdded.Date == DateTime.Today)
+            {
+                @onlyTime
+            }
+            else
+            {
+                @onlyDate
+            }
+        </p>
+
+        <h1> @Model.Title</h1>  <h6> @Model.Category.Name</h6>
+        <hr />
+        
+        <h2>Opis</h2>
+
+        <p style="font-size:18px;">
+            @Model.Description
+        </p>
+
+        <br />
+        <hr />
+        Dodano przez: @Model.User.FirstName @Model.User.LastName
+
+
+    </div>
+
+
+    </div>
+
+
+@section Scripts
+
 {
-    <img src="~/Files/@item.PhotoPath" />
+
+    <script src="~/lib/lightgallery/js/lightgallery-all.js"></script>
+    <script src="~/lib/lightSlider/js/lightslider.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#imageGallery').lightSlider({
+                gallery: true,
+                item: 1,
+                loop: true,
+                thumbItem: 10,
+                slideMargin: 0,
+                enableDrag: false,
+                auto: true,
+                pauseOnHover: true,
+                pause: 2500,
+                controls: true,
+
+                onSliderLoad: function (el) {
+                    el.lightGallery({
+                        selector: '#imageGallery .lslide',
+
+                    });
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
 }
-
-
