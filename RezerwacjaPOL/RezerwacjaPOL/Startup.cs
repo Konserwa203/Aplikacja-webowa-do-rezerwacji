@@ -11,6 +11,7 @@ using RezerwacjaPOL.Models;
 using RezerwacjaPOL.Models.Validators;
 using RezerwacjaPOLLibrary.Context;
 using RezerwacjaPOLLibrary.Models;
+using RezerwacjaPOLLibrary.Settings;
 using RezerwacjaPOLLibrary.Validators;
 using RezerwacjaPOLLibrary.ViewModels;
 using System;
@@ -46,6 +47,9 @@ namespace RezerwacjaPOL
                     o.LoginPath = "/Login/";
                 }
                 );
+
+
+            services.AddSingleton<IGlobalSettings, GlobalSettings>();
 
         }
 
