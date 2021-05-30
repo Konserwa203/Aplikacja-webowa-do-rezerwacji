@@ -24,7 +24,13 @@ namespace RezerwacjaPOLLibrary.Settings
             return principal.FindFirstValue(key);
         }
 
-
+        public string Email
+        {
+            get
+            {
+                return GetValue(_accessor.HttpContext.User, ClaimTypes.Email);
+            }
+        }
 
     }
 }
