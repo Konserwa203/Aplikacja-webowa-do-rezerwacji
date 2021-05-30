@@ -32,7 +32,6 @@ namespace RezerwacjaPOL.Controllers
                 DateAdded = getSingleAuction.CreatedOn,
                 PhotosPath = getSingleAuction.PhotosPath,
                 Description = getSingleAuction.Description,
-                Id = getSingleAuction.Id
             };
             return View(auction);
         }
