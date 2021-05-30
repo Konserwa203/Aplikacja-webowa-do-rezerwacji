@@ -14,11 +14,14 @@ using System.Threading.Tasks;
 
 namespace RezerwacjaPOL.Controllers
 {
+    [Authorize]
     public class AddAuctionController : Controller
     {
         private static IHostingEnvironment _enviroment;
         private static IConfiguration _configuration;
         private static AuctionContext _context;
+
+        
 
         public AddAuctionController(IHostingEnvironment environment, IConfiguration configuration, AuctionContext context)
         {
@@ -79,6 +82,7 @@ namespace RezerwacjaPOL.Controllers
             auctionToAdd.PhoneNumber = newAuction.PhoneNumber;
             auctionToAdd.PhotosPath = ConvertedPaths;
             auctionToAdd.Category = _context.AuctionCategories.FirstOrDefault(x => x.Id == newAuction.CategoryId);
+           // auctionToAdd.User =  TODO!!!
 
             _context.Auctions.Add(auctionToAdd);
             _context.SaveChanges();

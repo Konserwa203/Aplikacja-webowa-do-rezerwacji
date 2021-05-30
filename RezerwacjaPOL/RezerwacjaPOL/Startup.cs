@@ -40,7 +40,12 @@ namespace RezerwacjaPOL
             services.AddTransient<IValidator<AuctionViewModel>, AuctionVMValidator>();
             services.AddTransient<IValidator<LoginViewModel>, LoginVMValidator>();
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(o =>
+                {
+                    o.LoginPath = "/Login/";
+                }
+                );
 
         }
 
