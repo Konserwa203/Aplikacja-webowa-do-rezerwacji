@@ -34,7 +34,8 @@ namespace RezerwacjaPOL.Controllers
                     Category = x.Category,
                     DateAdded = x.CreatedOn,
                     PhotosPath = x.PhotosPath,
-                    Description = x.Description
+                    Description = x.Description,
+                    Id = x.Id
                 })
             };
             return View(data);

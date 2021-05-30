@@ -28,7 +28,6 @@ namespace RezerwacjaPOL.Controllers
         }
         public IActionResult Index()
         {
-            //ViewBag.Categories = GetCategoryStrings();
             ViewBag.Categories = _context.AuctionCategories.ToList<AuctionCategory>();
             return View();
         }

@@ -9,6 +9,7 @@ namespace RezerwacjaPOL.Models
 {
     public class AuctionViewModel
     {
+        public int Id { get; set; } // potrzebujemy tego mimo wszystko
         public string Title { get; set; }
         public string Description { get; set; }
         public string PhoneNumber { get; set; }
