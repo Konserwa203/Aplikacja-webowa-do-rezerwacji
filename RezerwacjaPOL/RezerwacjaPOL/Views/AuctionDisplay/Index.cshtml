@@ -16,9 +16,10 @@
        width:80%;
        margin:auto;
        background-color:white;
-       
-          
+                 
     }
+    
+    
 </style>
 
 
@@ -36,19 +37,45 @@
         </ul>
     </div>
 
-    @Model.Title
-    <br />
-    @Model.Category.Name
-    <br />
-    @Model.DateAdded
-    <br />
-    @Model.Description
-    <br />
-    @Model.User.FirstName @Model.User.LastName
-
-</div>
 
 
+
+    <div style="margin-top:30px; background-color:white; padding:15px;">
+
+        @{
+            string onlyTime = "Dodane dzisiaj o " + Model.DateAdded.TimeOfDay.ToString().Substring(0, 5);
+            string onlyDate = Model.DateAdded.ToString().Substring(0, 10);
+        }
+
+        <p style="padding-bottom:10px; margin:0;">
+            @if (Model.DateAdded.Date == DateTime.Today)
+            {
+                @onlyTime
+            }
+            else
+            {
+                @onlyDate
+            }
+        </p>
+
+        <h1> @Model.Title</h1>  <h6> @Model.Category.Name</h6>
+        <hr />
+        
+        <h2>Opis</h2>
+
+        <p style="font-size:18px;">
+            @Model.Description
+        </p>
+
+        <br />
+        <hr />
+        Dodano przez: @Model.User.FirstName @Model.User.LastName
+
+
+    </div>
+
+
+    </div>
 
 
 @section Scripts
