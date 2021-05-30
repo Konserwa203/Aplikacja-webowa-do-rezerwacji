@@ -34,6 +34,8 @@
     <None Include="wwwroot\BrandingImages\PanBookLogoWithNameBlack.png" />
     <None Include="wwwroot\BrandingImages\PanBook.png" />
     <None Include="wwwroot\BrandingImages\PanBookLogoWithNameWhite.svg" />
+    <None Include="wwwroot\lib\lightSlider\js\lightslider.js" />
+    <None Include="wwwroot\lib\lightSlider\js\lightslider.min.js" />
   </ItemGroup>
 
 </Project>
