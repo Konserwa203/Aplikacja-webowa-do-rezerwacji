@@ -24,6 +24,7 @@ namespace RezerwacjaPOLLibrary.Settings
             return principal.FindFirstValue(key);
         }
 
+        
         public string Email
         {
             get
@@ -32,5 +33,6 @@ namespace RezerwacjaPOLLibrary.Settings
             }
         }
 
+        
     }
 }
