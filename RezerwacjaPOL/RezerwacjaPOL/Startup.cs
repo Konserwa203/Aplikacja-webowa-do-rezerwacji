@@ -11,6 +11,7 @@ using RezerwacjaPOL.Models;
 using RezerwacjaPOL.Models.Validators;
 using RezerwacjaPOLLibrary.Context;
 using RezerwacjaPOLLibrary.Models;
+using RezerwacjaPOLLibrary.Settings;
 using RezerwacjaPOLLibrary.Validators;
 using RezerwacjaPOLLibrary.ViewModels;
 using System;
@@ -40,7 +41,15 @@ namespace RezerwacjaPOL
             services.AddTransient<IValidator<AuctionViewModel>, AuctionVMValidator>();
             services.AddTransient<IValidator<LoginViewModel>, LoginVMValidator>();
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(o =>
+                {
+                    o.LoginPath = "/Login/";
+                }
+                );
+
+
+            services.AddSingleton<IGlobalSettings, GlobalSettings>();
 
         }
 

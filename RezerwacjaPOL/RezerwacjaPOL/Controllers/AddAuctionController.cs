@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using RezerwacjaPOL.Models;
 using RezerwacjaPOLLibrary.Context;
 using RezerwacjaPOLLibrary.Models;
+using RezerwacjaPOLLibrary.Settings;
 using RezerwacjaPOLLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -14,18 +16,27 @@ using System.Threading.Tasks;
 
 namespace RezerwacjaPOL.Controllers
 {
+    [Authorize]
     public class AddAuctionController : Controller
     {
         private static IHostingEnvironment _enviroment;
         private static IConfiguration _configuration;
         private static AuctionContext _context;
+        private readonly IGlobalSettings _globalSettings;
 
-        public AddAuctionController(IHostingEnvironment environment, IConfiguration configuration, AuctionContext context)
+
+        public AddAuctionController(IHostingEnvironment environment, IConfiguration configuration, AuctionContext context, IGlobalSettings globalSettings)
         {
             _enviroment = environment;
             _configuration = configuration;
             _context = context;
+            _globalSettings = globalSettings;
         }
+        public User GetLoggedUser()
+        {
+            return _context.Users.FirstOrDefault(x => x.Email == _globalSettings.Email);
+        }
+
         public IActionResult Index()
         {
             ViewBag.Categories = _context.AuctionCategories.ToList<AuctionCategory>();
@@ -38,6 +49,7 @@ namespace RezerwacjaPOL.Controllers
             if (ModelState.IsValid)
             {
                 _context.Database.EnsureCreated();
+                newAuction.User = GetLoggedUser();
                 InsertAuction(newAuction);
                 return RedirectToAction("Index","Home");
             }
@@ -74,11 +86,15 @@ namespace RezerwacjaPOL.Controllers
                 });
             }
 
+            
+          
             auctionToAdd.Title = newAuction.Title;
             auctionToAdd.Description = newAuction.Description;
             auctionToAdd.PhoneNumber = newAuction.PhoneNumber;
             auctionToAdd.PhotosPath = ConvertedPaths;
             auctionToAdd.Category = _context.AuctionCategories.FirstOrDefault(x => x.Id == newAuction.CategoryId);
+            auctionToAdd.User = newAuction.User;
+            
 
             _context.Auctions.Add(auctionToAdd);
             _context.SaveChanges();
