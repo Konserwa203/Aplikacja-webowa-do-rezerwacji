@@ -46,6 +46,7 @@ namespace RezerwacjaPOL.Controllers
         [HttpPost]
         public IActionResult Index(AuctionViewModel newAuction)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Database.EnsureCreated();
