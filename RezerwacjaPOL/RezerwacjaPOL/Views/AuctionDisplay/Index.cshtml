@@ -10,5 +10,9 @@
 <br />
 @Model.User.FirstName @Model.User.LastName
 
+@foreach (var item in Model.PhotosPath)
+{
+    <img src="~/Files/@item.PhotoPath" />
+}
 
 
