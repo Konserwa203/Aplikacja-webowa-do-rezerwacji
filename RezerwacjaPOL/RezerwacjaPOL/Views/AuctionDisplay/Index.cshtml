@@ -3,14 +3,19 @@
 <link href="~/lib/lightSlider/css/lightslider.css" rel="stylesheet" />
 
 <style>
+    body {
+        background-color: #F2F4F5;
+    }
+
     .imgFit {
         width: 100%;
         height: 60vh;
-        object-fit:fill;
+        object-fit:contain;
     }
     .imgContainer{
        width:80%;
        margin:auto;
+       background-color:white;
        
           
     }
@@ -18,6 +23,18 @@
 
 
 <div class="container">
+
+    <div class="imgContainer">
+        <ul id="imageGallery">
+            @foreach (var item in Model.PhotosPath)
+            {
+                <li data-thumb="/Files/@item.PhotoPath" data-src="/Files/@item.PhotoPath">
+                    <img class="imgFit" src="~/Files/@item.PhotoPath" />
+                </li>
+            }
+
+        </ul>
+    </div>
 
     @Model.Title
     <br />
@@ -29,19 +46,6 @@
     <br />
     @Model.User.FirstName @Model.User.LastName
 
-
-
-<div class="imgContainer">
-    <ul id="imageGallery">
-        @foreach (var item in Model.PhotosPath)
-        {
-            <li data-thumb="/Files/@item.PhotoPath" data-src="/Files/@item.PhotoPath">
-                <img class="imgFit" src="~/Files/@item.PhotoPath" />
-            </li>
-        }
-
-    </ul>
-</div>
 </div>
 
 

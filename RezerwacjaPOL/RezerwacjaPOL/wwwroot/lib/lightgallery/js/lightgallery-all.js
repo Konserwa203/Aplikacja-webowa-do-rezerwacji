@@ -1,9 +1,3 @@
-/*! lightgallery - v1.10.0 - 2020-11-07
-* http://sachinchoolur.github.io/lightGallery/
-* Copyright (c) 2020 Sachin N; Licensed GPLv3 */
-/*! lightgallery - v1.10.0 - 2020-11-07
-* http://sachinchoolur.github.io/lightGallery/
-* Copyright (c) 2020 Sachin N; Licensed GPLv3 */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module unless amdModuleId is set
