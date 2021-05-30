@@ -25,7 +25,7 @@
                         string onlyTime = "Dzisiaj " + item.DateAdded.TimeOfDay.ToString().Substring(0, 5);
                         string onlyDate = item.DateAdded.ToString().Substring(0, 10);
                     }
-                    <p class="categoryStyle">@Html.DisplayFor(modelItem => item.Category)</p>
+                    <p class="categoryStyle">@Html.DisplayFor(modelItem => item.Category.Name)</p>
                     <p class="dateStyle">
                         @if (item.DateAdded.Date == DateTime.Today)
                         {
