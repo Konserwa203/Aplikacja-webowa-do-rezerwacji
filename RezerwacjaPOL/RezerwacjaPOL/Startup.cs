@@ -56,7 +56,7 @@ namespace RezerwacjaPOL
             //elastic search stuff
             var pool = new SingleNodeConnectionPool(new Uri("http://localhost:9200"));
             var settings = new ConnectionSettings(pool)
-                .DefaultIndex("Auctions");
+                .DefaultIndex("auctions");
             var client = new ElasticClient(settings);
             services.AddSingleton(client);
         }

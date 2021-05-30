@@ -1,4 +1,15 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Nest.ISearchResponse<AuctionViewModel>
+<form asp-controller="Home" asp-action="Index" method="post">
+    <input type="text" name="query" />
+    <input type="submit" value="Search" />
+</form>
+@if (Model.Documents.Any())
+{
+    <h3>Search Results</h3>
+    <ul>
+        @foreach (var item in Model.Documents)
+        {
+            <li>Title: @item.Title (ISBN: @item.Category)</li>
+        }
+    </ul>
+}
