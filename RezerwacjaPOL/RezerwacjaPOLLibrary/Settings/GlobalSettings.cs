@@ -16,9 +16,15 @@ namespace RezerwacjaPOLLibrary.Settings
         {
             _accessor = accessor;
         }
-
        
+        public string GetValue(ClaimsPrincipal principal, string key)
+        {
+            if (principal == null) return null;
 
-       
+            return principal.FindFirstValue(key);
+        }
+
+
+
     }
 }
