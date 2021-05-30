@@ -23,7 +23,7 @@ namespace RezerwacjaPOL.Controllers
         public IActionResult Index(int Id =0)
         {
 
-            var getSingleAuction = _context.Auctions.Include(x => x.PhotosPath).ThenInclude(x => x.Auction.Category).Where(x=>x.Id==Id).ToList().First();
+            var getSingleAuction = _context.Auctions.Include(x => x.PhotosPath).Include(x=>x.User).Include(x => x.Category).Where(x=>x.Id==Id).ToList().First();
             var auction = new AuctionViewModel
             {
                 Title = getSingleAuction.Title,
@@ -32,6 +32,7 @@ namespace RezerwacjaPOL.Controllers
                 DateAdded = getSingleAuction.CreatedOn,
                 PhotosPath = getSingleAuction.PhotosPath,
                 Description = getSingleAuction.Description,
+                User = getSingleAuction.User
             };
             return View(auction);
         }
