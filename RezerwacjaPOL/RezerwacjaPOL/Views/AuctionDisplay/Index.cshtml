@@ -1,37 +1,86 @@
 ﻿@model RezerwacjaPOL.Models.AuctionViewModel;
     <link href="~/lib/lightgallery/css/lightgallery.css" rel="stylesheet" />
+    <link href="~/lib/lightSlider/css/lightslider.css" rel="stylesheet" />
 
-@Model.Title
-<br />
-@Model.Category.Name
-<br />
-@Model.DateAdded
-<br />
-@Model.Description
-<br />
-@Model.User.FirstName @Model.User.LastName
 
-<div id="lightgallery">
-    @foreach (var item in Model.PhotosPath)
-    {
 
-        <a href="~/Files/@item.PhotoPath">
-            <img src="~/Files/@item.PhotoPath" />
-        </a>
-    }
-</div>
+    <div class="container">
+
+        @Model.Title
+        <br />
+        @Model.Category.Name
+        <br />
+        @Model.DateAdded
+        <br />
+        @Model.Description
+        <br />
+        @Model.User.FirstName @Model.User.LastName
+
+
+
+
+        <ul id="imageGallery" class="gallery list-unstyled lightSlider lSSlide">
+
+            @foreach (var item in Model.PhotosPath)
+            {
+                <li data-thumb="/Files/@item.PhotoPath" data-src="/Files/@item.PhotoPath">
+                    <img src="~/Files/@item.PhotoPath" />
+                </li>
+            }
+
+        </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
 
 
     @section Scripts
-{
-        <script src="~/lib/lightGallery/js/lightgallery-all.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#lightgallery").lightGallery({
-                    thumbnail: true,
 
+{
+
+
+
+       
+        <script src="~/lib/lightgallery/js/lightgallery-all.js"></script>
+        <script src="~/lib/lightSlider/js/lightslider.js"></script>
+       
+        <script>
+            $(document).ready(function () {
+                $('#imageGallery').lightSlider({
+                    gallery: true,
+                    item: 1,
+                    loop: true,
+                    thumbItem: 9,
+                    slideMargin: 0,
+                    enableDrag: true,
+
+
+                    currentPagerPosition: 'left',
+                    onSliderLoad: function (el) {
+                        el.lightGallery({
+                            selector: '#imageGallery .lslide'
+                        });
+                    }
                 });
             });
         </script>
+
+
+
+
+
+
 
     }
