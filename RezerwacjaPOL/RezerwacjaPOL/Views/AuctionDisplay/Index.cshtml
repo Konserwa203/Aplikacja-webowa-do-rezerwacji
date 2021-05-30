@@ -1,81 +1,82 @@
 ﻿@model RezerwacjaPOL.Models.AuctionViewModel;
-    <link href="~/lib/lightgallery/css/lightgallery.css" rel="stylesheet" />
-    <link href="~/lib/lightSlider/css/lightslider.css" rel="stylesheet" />
+<link href="~/lib/lightgallery/css/lightgallery.css" rel="stylesheet" />
+<link href="~/lib/lightSlider/css/lightslider.css" rel="stylesheet" />
+
+<style>
+    .imgFit {
+        width: 100%;
+        height: 60vh;
+        object-fit:fill;
+    }
+    .imgContainer{
+       width:80%;
+       margin:auto;
+       
+          
+    }
+</style>
+
+
+<div class="container">
+
+    @Model.Title
+    <br />
+    @Model.Category.Name
+    <br />
+    @Model.DateAdded
+    <br />
+    @Model.Description
+    <br />
+    @Model.User.FirstName @Model.User.LastName
 
 
 
-    <div class="container">
+<div class="imgContainer">
+    <ul id="imageGallery">
+        @foreach (var item in Model.PhotosPath)
+        {
+            <li data-thumb="/Files/@item.PhotoPath" data-src="/Files/@item.PhotoPath">
+                <img class="imgFit" src="~/Files/@item.PhotoPath" />
+            </li>
+        }
 
-        @Model.Title
-        <br />
-        @Model.Category.Name
-        <br />
-        @Model.DateAdded
-        <br />
-        @Model.Description
-        <br />
-        @Model.User.FirstName @Model.User.LastName
-
-
-
-
-        <ul id="imageGallery" class="gallery list-unstyled lightSlider lSSlide">
-
-            @foreach (var item in Model.PhotosPath)
-            {
-                <li data-thumb="/Files/@item.PhotoPath" data-src="/Files/@item.PhotoPath">
-                    <img src="~/Files/@item.PhotoPath" />
-                </li>
-            }
-
-        </ul>
+    </ul>
+</div>
+</div>
 
 
 
 
-
-
-
-
-
-
-
-
-    </div>
-
-
-
-
-    @section Scripts
+@section Scripts
 
 {
 
+    <script src="~/lib/lightgallery/js/lightgallery-all.js"></script>
+    <script src="~/lib/lightSlider/js/lightslider.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            $('#imageGallery').lightSlider({
+                gallery: true,
+                item: 1,
+                loop: true,
+                thumbItem: 10,
+                slideMargin: 0,
+                enableDrag: false,
+                auto: true,
+                pauseOnHover: true,
+                pause: 2500,
+                controls: true,
 
-       
-        <script src="~/lib/lightgallery/js/lightgallery-all.js"></script>
-        <script src="~/lib/lightSlider/js/lightslider.js"></script>
-       
-        <script>
-            $(document).ready(function () {
-                $('#imageGallery').lightSlider({
-                    gallery: true,
-                    item: 1,
-                    loop: true,
-                    thumbItem: 9,
-                    slideMargin: 0,
-                    enableDrag: true,
+                onSliderLoad: function (el) {
+                    el.lightGallery({
+                        selector: '#imageGallery .lslide',
 
-
-                    currentPagerPosition: 'left',
-                    onSliderLoad: function (el) {
-                        el.lightGallery({
-                            selector: '#imageGallery .lslide'
-                        });
-                    }
-                });
+                    });
+                }
             });
-        </script>
+        });
+    </script>
 
 
 
@@ -83,4 +84,4 @@
 
 
 
-    }
+}
