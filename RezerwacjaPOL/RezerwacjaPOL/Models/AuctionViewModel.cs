@@ -19,6 +19,7 @@ namespace RezerwacjaPOL.Models
         //public string Category { get; set; }
         public AuctionCategory? Category { get; set; }
         public int? CategoryId { get; set; }
+        public User User { get; set; }
 
         public virtual ICollection<AuctionPhoto> PhotosPath { get; set; }
     }
