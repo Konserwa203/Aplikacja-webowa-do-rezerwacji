@@ -2,12 +2,13 @@
 
 <link href="~/css/auctionListing.css" rel="stylesheet" />
 
+<div class="container">
 @foreach (var item in Model)
 {
-    <table class="table table-sm" style="width:100%;  box-shadow: 2px 2px 2px gray;">
+    @*<table class="table table-sm">
         <tbody>
-            <tr style="background-color:white; ">
-                <td style="width: 216px; height: 152px; margin:20px">
+            <tr style="background-color:white; border-radius: 50%; border-color:white;">
+                <td style="width: 216px; height: 152px; margin:20px; padding:1em;">
                     <a href="">
                        <img class="ThumbnailStyle" src="~/Files/@item.ThumbnailPhotoDir" />
                     </a>
@@ -39,5 +40,8 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table>*@
+
+
 }
+</div>
