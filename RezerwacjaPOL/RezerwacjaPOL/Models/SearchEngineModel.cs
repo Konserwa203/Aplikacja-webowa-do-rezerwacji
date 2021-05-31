@@ -7,7 +7,7 @@ namespace RezerwacjaPOL.Models
 {
     public class SearchEngineModel
     {
-        public int Id { get; set; } // potrzebujemy tego mimo wszystko //noshit sherlock
+        public int Id { get; set; } 
         public string Title { get; set; }
         public string Description { get; set; }
         public string PhoneNumber { get; set; }

@@ -53,7 +53,8 @@ namespace RezerwacjaPOL.Controllers
         public IActionResult Index(AuctionViewModel newAuction)
         {
             var auction = new SearchEngineModel
-            {                
+            {   
+                Id=Guid.NewGuid().GetHashCode(),
                 CategoryString= newAuction.Category==null?"": newAuction.Category.ToString(),
                 DateAdded= newAuction.DateAdded,
                 Description= newAuction.Description,
@@ -61,7 +62,8 @@ namespace RezerwacjaPOL.Controllers
                 Title= newAuction.Title,
                 User = GetLoggedUser().Email
             };
-            var indexResponse = _client.IndexDocument(auction);
+            var indexResponse = _client.Index(auction, i => i.Index("auctions"));
+            //var indexResponse = _client.IndexDocument(auction);
             if (ModelState.IsValid && indexResponse.IsValid)
             {
                 _context.Database.EnsureCreated();

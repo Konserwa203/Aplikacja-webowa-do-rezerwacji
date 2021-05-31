@@ -25,34 +25,12 @@ namespace RezerwacjaPOL.Controllers
         public IActionResult Index()
         {
             ISearchResponse<SearchEngineModel> results;
-            
-            
+                      
                 results = _client.Search<SearchEngineModel>(s => s
                     .Query(q => q
-                        .MatchAll()));
+                        .MatchAll()));   
             
-            var titles = new List<string>();
-            foreach (var item in results.Documents)
-            {
-                titles.Add(item.Title);
-            }
-            var auctions = _context.Auctions.Where(x => titles.Contains(x.Title)).ToList();
-            var getData = _context.Auctions.Include(x => x.PhotosPath).ThenInclude(x => x.Auction.Category)
-                .Where(x => titles.Contains(x.Title)).ToList();
-            var data = new HomeIndexViewModel
-            {
-                Auctions = getData.Select(x => new AuctionViewModel
-                {
-                    Title = x.Title,
-                    ThumbnailPhotoDir = x.PhotosPath.Select(x => x.PhotoPath).FirstOrDefault(),
-                    Category = x.Category,
-                    DateAdded = x.CreatedOn,
-                    PhotosPath = x.PhotosPath,
-                    Description = x.Description,
-                    Id = x.Id
-                })
-            };
-            ViewData["auctions"] = data.Auctions;
+            ViewData["auctions"] = Ceavog(results).Auctions;
             return View("Index",results);
         }
         //[Route("SearchAuction/Index")]
@@ -82,12 +60,18 @@ namespace RezerwacjaPOL.Controllers
                 );
                 ViewData["blad"]= "Niestyty nie znaleziono tego czego szukasz";
             }
+          
+            ViewData["auctions"] = Ceavog(results).Auctions;
+            return View("Index", results);
+        }
+        static private HomeIndexViewModel Ceavog(ISearchResponse<SearchEngineModel> results)
+        {
             var titles = new List<string>();
             foreach (var item in results.Documents)
             {
                 titles.Add(item.Title);
             }
-            var auctions = _context.Auctions.Where(x => titles.Contains(x.Title)).ToList();
+            //var auctions = _context.Auctions.Where(x => titles.Contains(x.Title)).ToList();
             var getData = _context.Auctions.Include(x => x.PhotosPath).ThenInclude(x => x.Auction.Category)
                 .Where(x => titles.Contains(x.Title)).ToList();
             var data = new HomeIndexViewModel
@@ -102,9 +86,8 @@ namespace RezerwacjaPOL.Controllers
                     Description = x.Description,
                     Id = x.Id
                 })
-            };
-            ViewData["auctions"] = data.Auctions;
-            return View("Index", results);
+            };           
+            return data;
         }
     }
 }
