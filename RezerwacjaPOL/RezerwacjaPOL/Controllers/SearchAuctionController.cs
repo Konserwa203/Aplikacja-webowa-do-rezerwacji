@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Nest;
 using RezerwacjaPOL.Models;
@@ -23,17 +24,49 @@ namespace RezerwacjaPOL.Controllers
         }
         public IActionResult Index()
         {
-            var results = _client.Search<SearchEngineModel>(s => s
+            string query = "wynajem";
+            ISearchResponse<SearchEngineModel> results;
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                results = _client.Search<SearchEngineModel>(s => s
                 .Query(q => q
-                .MatchAll()
-            ));
+                .Match(t => t
+                .Field(f => f.Title)
+                .Query(query)
+                     )
+                   )
+                );
+            }
+            else
+            {
+                results = _client.Search<SearchEngineModel>(s => s
+                    .Query(q => q
+                        .MatchAll()
+                    )
+                );
+            }
             var titles = new List<string>();
             foreach (var item in results.Documents)
             {
                 titles.Add(item.Title);
             }
-
-            _context.Auctions.Any(x => titles.Contains(x.Title));
+            var auctions = _context.Auctions.Where(x => titles.Contains(x.Title)).ToList();
+            var getData = _context.Auctions.Include(x => x.PhotosPath).ThenInclude(x => x.Auction.Category)
+                .Where(x => titles.Contains(x.Title)).ToList();
+            var data = new HomeIndexViewModel
+            {
+                Auctions = getData.Select(x => new AuctionViewModel
+                {
+                    Title = x.Title,
+                    ThumbnailPhotoDir = x.PhotosPath.Select(x => x.PhotoPath).FirstOrDefault(),
+                    Category = x.Category,
+                    DateAdded = x.CreatedOn,
+                    PhotosPath = x.PhotosPath,
+                    Description = x.Description,
+                    Id = x.Id
+                })
+            };
+            ViewData["auctions"] = data.Auctions;
             return View("Index",results);
         }
         //[Route("SearchAuction/Index")]

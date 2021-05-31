@@ -20,7 +20,7 @@
     </ul>
 }
 <div id="opinions">
-    @*@await Html.PartialAsync("_AuctionListingPartial" )*@
+    @await Html.PartialAsync("_AuctionListingPartial", ViewData["auctions"] as IEnumerable<AuctionViewModel>)
 </div>
 
 @section Scripts{
