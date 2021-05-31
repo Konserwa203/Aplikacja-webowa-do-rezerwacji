@@ -4,38 +4,39 @@
 
 @foreach (var item in Model)
 {
-    <table class="table table-sm" style="width:100%;  box-shadow: 2px 2px 2px gray;">
+    <table class="table table-sm table-hover" style="width:100%;  box-shadow: 2px 2px 2px gray;">
         <tbody>
-            <tr style="background-color:white; ">
-                <td style="width: 216px; height: 152px; margin:20px">
-                    <a href="">
-                       <img class="ThumbnailStyle" src="~/Files/@item.ThumbnailPhotoDir" />
-                    </a>
-                </td>
-                <td style="margin: 20px">
-
-                    <h4 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 500px; font-weight: 100; text-align:left;">
-                        <a class="ListTitle" asp-action="Index" asp-controller="AuctionDisplay" asp-route-id="@item.Id">
-                            <strong>@Html.DisplayFor(modelItem => item.Title)</strong>
-                        </a>
-                    </h4>
-                </td>
+            <tr>
                 <td>
-                    @{
-                        string onlyTime = "Dzisiaj " + item.DateAdded.TimeOfDay.ToString().Substring(0, 5);
-                        string onlyDate = item.DateAdded.ToString().Substring(0, 10);
-                    }
-                    <p class="categoryStyle">@Html.DisplayFor(modelItem => item.Category.Name)</p>
-                    <p class="dateStyle">
-                        @if (item.DateAdded.Date == DateTime.Today)
-                        {
-                            @onlyTime
-                        }
-                        else
-                        {
-                            @onlyDate
-                        }
-                    </p>
+                    <a class="row justify-content-between text-decoration-none text-body" asp-action="Index" asp-controller="AuctionDisplay" asp-route-id="@item.Id">
+                        <div class="d-inline-flex">
+                            <div style="width: 216px; height: 152px; margin:20px">
+                                <img class="ThumbnailStyle" src="~/Files/@item.ThumbnailPhotoDir" />
+                            </div>
+                            <div style="margin: 20px">
+                                <h4 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 500px; font-weight: 100; text-align:left;">
+                                    <strong>@Html.DisplayFor(modelItem => item.Title)</strong>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="mx-2">
+                            @{
+                                string onlyTime = "Dzisiaj " + item.DateAdded.TimeOfDay.ToString().Substring(0, 5);
+                                string onlyDate = item.DateAdded.ToString().Substring(0, 10);
+                            }
+                            <p class="categoryStyle">@Html.DisplayFor(modelItem => item.Category.Name)</p>
+                            <p class="dateStyle">
+                                @if (item.DateAdded.Date == DateTime.Today)
+                                {
+                                    @onlyTime
+                                }
+                                else
+                                {
+                                    @onlyDate
+                                }
+                            </p>
+                        </div>
+                    </a>
                 </td>
             </tr>
         </tbody>
