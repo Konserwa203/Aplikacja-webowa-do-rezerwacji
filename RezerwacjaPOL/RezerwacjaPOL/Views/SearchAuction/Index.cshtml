@@ -1,5 +1,34 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model Nest.ISearchResponse<SearchEngineModel>
+<form asp-controller="SearchAuction" asp-action="Index" method="post" 
+          data-ajax="true"
+          data-ajax-method="POST"
+          data-ajax-mode="replace"
+          data-ajax-update="#opinions"
+          data-ajax-sukcess="clear"
+          id="form">
+    <input type="text" name="query" />
+    <input type="submit" value="Search" />
+</form>
+@if (Model.Documents.Any())
+{
+    <h3>Search Results</h3>
+    <ul>
+        @foreach (var book in Model.Documents)
+        {
+            <li>Title: @book.Title </li>
+        }
+    </ul>
+}
+<div id="opinions">
+    @*@await Html.PartialAsync("_AuctionListingPartial" )*@
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery/jquery.unobtrusive-ajax.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function clear() {
+            $("form").get(0).reset();
+        }
+    </script>
 }

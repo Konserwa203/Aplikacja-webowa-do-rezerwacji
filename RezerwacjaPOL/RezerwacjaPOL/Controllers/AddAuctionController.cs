@@ -62,7 +62,7 @@ namespace RezerwacjaPOL.Controllers
                 User = GetLoggedUser().Email
             };
             var indexResponse = _client.IndexDocument(auction);
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && indexResponse.IsValid)
             {
                 _context.Database.EnsureCreated();
                 newAuction.User = GetLoggedUser();
