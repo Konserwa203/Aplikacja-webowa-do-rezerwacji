@@ -16,6 +16,7 @@ namespace RezerwacjaPOL.Models.Validators
              RuleFor(x=>x.Title).NotEmpty().Length(1, 1000);
              RuleFor(x => x.Description).NotEmpty().Length(5, 1000);
              RuleFor(x => x.PhoneNumber).NotEmpty().Length(6, 12);
+             RuleFor(x => x.DateAdded).NotEmpty().GreaterThan(DateTime.Now.AddMinutes(1));
         }
        
     }

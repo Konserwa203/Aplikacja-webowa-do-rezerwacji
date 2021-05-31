@@ -61,8 +61,8 @@ namespace RezerwacjaPOL.Controllers
                 ViewData["blad"]= "Niestyty nie znaleziono tego czego szukasz";
             }
           
-            ViewData["auctions"] = Ceavog(results).Auctions;
-            return View("Index", results);
+           // ViewData["auctions"] = Ceavog(results).Auctions;
+            return PartialView("_AuctionListingPartial", Ceavog(results).Auctions);
         }
         static private HomeIndexViewModel Ceavog(ISearchResponse<SearchEngineModel> results)
         {
