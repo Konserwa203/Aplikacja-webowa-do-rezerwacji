@@ -39,7 +39,7 @@ namespace RezerwacjaPOL.Controllers
                 InsertUser(_context, user);
                 _context.SaveChanges();
             }
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index","Login");
         }
 
         static string SaveImage(UserViewModel user)
