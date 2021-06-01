@@ -45,7 +45,7 @@ namespace RezerwacjaPOL.Controllers
                 }
             }
 
-            return NotFound();
+            return View();
         }
         
     }
