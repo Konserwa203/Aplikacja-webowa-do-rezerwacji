@@ -20,11 +20,14 @@
     border: none;
     position: relative;
     padding-bottom: 50px;
+    height:100%;
+   
 }
 
 
 .dropDiv {
-   
+   width:100%;
+   margin:0;
     z-index:1000000;
     position:relative;
     border:1px dashed gray;
@@ -56,4 +59,9 @@ custom-file-label::-webkit-file-upload-button {
 .custom-file-label {
     background-color: transparent;
     border:none;
+}
+
+.descriptionForm{
+    min-height:200px;
+    
 }
