@@ -46,7 +46,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Avatar" class="control-label"></label>
-                <input  type="file" asp-for="Avatar" class="form-control" />
+
+                <div class="form-group dropDiv">
+                    <input type="file"  asp-for="Avatar" class="form-control custom-file-input dropInput "  placeholder="Wybierz lub przeciągnij" />
+                    <label  class="custom-file-label">Wybierz lub przeciągnij</label>
+                    
+                </div>
                 <span asp-validation-for="Avatar" class="text-danger"></span>
             </div>
 
