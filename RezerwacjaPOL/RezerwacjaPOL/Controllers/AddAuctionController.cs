@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Nest;
 using RezerwacjaPOL.Models;
 using RezerwacjaPOLLibrary.Context;
 using RezerwacjaPOLLibrary.Models;
@@ -21,22 +19,18 @@ namespace RezerwacjaPOL.Controllers
     [Authorize]
     public class AddAuctionController : Controller
     {
-        private readonly ElasticClient _client;
         private static IHostingEnvironment _enviroment;
         private static IConfiguration _configuration;
         private static AuctionContext _context;
         private readonly IGlobalSettings _globalSettings;
-        private readonly ILogger<AddAuctionController> _logger;
 
-        public AddAuctionController(IHostingEnvironment environment, IConfiguration configuration, AuctionContext context, IGlobalSettings globalSettings,
-            ILogger<AddAuctionController> logger, ElasticClient client)
+
+        public AddAuctionController(IHostingEnvironment environment, IConfiguration configuration, AuctionContext context, IGlobalSettings globalSettings)
         {
             _enviroment = environment;
             _configuration = configuration;
             _context = context;
             _globalSettings = globalSettings;
-            _client = client;
-            _logger = logger;
         }
         public User GetLoggedUser()
         {
@@ -52,19 +46,7 @@ namespace RezerwacjaPOL.Controllers
         [HttpPost]
         public IActionResult Index(AuctionViewModel newAuction)
         {
-            var auction = new SearchEngineModel
-            {   
-                Id=Guid.NewGuid().GetHashCode(),
-                CategoryString= newAuction.Category==null?"": newAuction.Category.ToString(),
-                DateAdded= newAuction.DateAdded,
-                Description= newAuction.Description,
-                PhoneNumber= newAuction.PhoneNumber,
-                Title= newAuction.Title,
-                User = GetLoggedUser().Email
-            };
-            var indexResponse = _client.Index(auction, i => i.Index("auctions"));
-            //var indexResponse = _client.IndexDocument(auction);
-            if (ModelState.IsValid && indexResponse.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Database.EnsureCreated();
                 newAuction.User = GetLoggedUser();
