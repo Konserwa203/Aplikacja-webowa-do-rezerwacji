@@ -9,7 +9,7 @@ namespace RezerwacjaPOL.Models
 {
     public class AuctionViewModel
     {
-        public int Id { get; set; } // potrzebujemy tego mimo wszystko //noshit sherlock
+        public int Id { get; set; } // potrzebujemy tego mimo wszystko
         public string Title { get; set; }
         public string Description { get; set; }
         public string PhoneNumber { get; set; }
@@ -18,7 +18,6 @@ namespace RezerwacjaPOL.Models
         public DateTime DateAdded { get; set; }
         //public string Category { get; set; }
         public AuctionCategory? Category { get; set; }
-        public string CategoryString { get; set; }
         public int? CategoryId { get; set; }
         public User User { get; set; }
 
