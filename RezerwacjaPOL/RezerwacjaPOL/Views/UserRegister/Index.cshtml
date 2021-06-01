@@ -13,10 +13,10 @@
         <form asp-action="Index" enctype="multipart/form-data">
             <span class="text-center">Zarejestruj się za darmo!</span>
 
-            
+
 
             <div class="input-container" style="width:100%;">
-                <input  asp-for="FirstName" placeholder="Jak masz na imię?" />
+                <input asp-for="FirstName" placeholder="Jak masz na imię?" />
                 <label asp-for="FirstName">Imię</label>
                 <div class="validationLogin">
                     <span asp-validation-for="FirstName" class="text-danger"></span>
@@ -24,14 +24,14 @@
             </div>
 
             <div class="input-container">
-                <input asp-for="LastName" placeholder="Jak masz na nazwisko?"/>
+                <input asp-for="LastName" placeholder="Jak masz na nazwisko?" />
                 <label asp-for="LastName">Nazwisko</label>
                 <div class="validationLogin">
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
             </div>
             <div class="input-container">
-                <input asp-for="Email" placeholder="Podaj nam swój adres e-mail"/>
+                <input asp-for="Email" placeholder="Podaj nam swój adres e-mail" />
                 <label asp-for="Email">Email</label>
                 <div class="validationLogin">
                     <span asp-validation-for="Email" class="text-danger"></span>
@@ -48,12 +48,12 @@
                 <label asp-for="Avatar" class="control-label"></label>
 
                 <div class="form-group dropDiv" style="margin:0 !important;">
-                    <input type="file"  asp-for="Avatar" class="form-control custom-file-input dropInput"  placeholder="Wybierz lub przeciągnij" />
-                    <label  class="custom-file-label">Wybierz lub przeciągnij</label>
-                    
+                    <input type="file" asp-for="Avatar" id="drop-zone" class="form-control custom-file-input dropInput" placeholder="Wybierz lub przeciągnij" />
+                    <label class="custom-file-label">Wybierz lub przeciągnij</label>
                 </div>
                 <span asp-validation-for="Avatar" class="text-danger"></span>
             </div>
+            <div id="howMany"></div>
 
 
 
@@ -66,4 +66,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/js/dragAndDropCount.js"></script>
+
 }
