@@ -12,10 +12,12 @@
         @* Background image jest do zmiany - To jest testowe! *@
         <form asp-action="Index" enctype="multipart/form-data">
             <span class="text-center">Zarejestruj się za darmo!</span>
-            <div class="input-container">
+            <div class="input-container" style="width:100%;">
                 <input asp-for="FirstName" />
                 <label asp-for="FirstName">Name</label>
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <div style="max-width: 100%; padding: 0; margin: 0; overflow:hidden; display:inline;">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
             </div>
 
             <div class="input-container">
