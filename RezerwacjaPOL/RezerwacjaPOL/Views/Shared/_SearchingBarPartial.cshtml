@@ -1,0 +1,12 @@
+﻿@model Nest.ISearchResponse<AuctionViewModel>
+
+@if (Model.Documents.Any())
+{
+    <h3>Search Results</h3>
+    <ul>
+        @foreach (var item in Model.Documents)
+        {
+            <li>Title: @item.Title (ISBN: @item.Category)</li>
+        }
+    </ul>
+}

@@ -58,7 +58,7 @@
             }
         </p>
 
-        <h1> @Model.Title</h1>  <h6> @Model.Category.Name</h6>
+        <h1> @Model.Title</h1> @if(@Model.Category!=null) {<h6> @Model.Category.Name</h6>} 
         <hr />
         
         <h2>Opis</h2>
