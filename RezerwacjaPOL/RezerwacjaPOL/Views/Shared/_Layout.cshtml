@@ -6,15 +6,17 @@
     <title>@ViewData["Title"] - In development</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/CustomStyle.css" />
+
     <link rel="icon"
           type="icon"
           href="~/SVGPanBookFavicon.svg">
-    
+
 
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar-custom navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/BrandingImages/PanBookLogoWithNameBlack.svg" style="height:2em" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -23,24 +25,25 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="AddAuction" asp-action="Index">Add your advertisement!</a>
-                        </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="AddAuction" asp-action="Index">Dodaj ogłoszenie</a>
+                        </li>*@
                     </ul>
                     <div>
+                        <a class="btn btn-dark" asp-controller="AddAuction" asp-action="Index">Dodaj ogłoszenie</a>
+
                         @if (!Context.User.Identity.IsAuthenticated)
                         {
 
-                            <a class="btn btn-secondary" asp-controller="UserRegister">Register</a>
-                            <a class="btn btn-primary" asp-controller="Login">Login</a>
+                            <a class="btn btn-light" asp-controller="UserRegister">Register</a>
+                            <a class="btn btn-outline-dark" asp-controller="Login">Login</a>
                         }
                         else
                         {
-                            <a class="btn btn-secondary" asp-controller="Signout">Sign out</a>
+                            <a class="btn btn-outline-dark" asp-controller="Signout">Sign out</a>
                         }
+
+
                     </div>
                     </div>
                 </div>

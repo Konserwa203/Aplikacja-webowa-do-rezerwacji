@@ -18,6 +18,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Nest;
+using Elasticsearch.Net;
 
 namespace RezerwacjaPOL
 {
@@ -51,6 +53,14 @@ namespace RezerwacjaPOL
 
             services.AddSingleton<IGlobalSettings, GlobalSettings>();
 
+            //elastic search stuff
+            var pool = new SingleNodeConnectionPool(new Uri("http://localhost:9200"));
+            var settings = new ConnectionSettings(pool)
+                .DefaultIndex("auctions")
+               ;
+            
+            var client = new ElasticClient(settings);
+            services.AddSingleton(client);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
