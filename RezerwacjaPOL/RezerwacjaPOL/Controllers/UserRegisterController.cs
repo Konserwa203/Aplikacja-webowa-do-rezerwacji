@@ -44,7 +44,7 @@ namespace RezerwacjaPOL.Controllers
 
         static string SaveImage(UserViewModel user)
         {
-            if (user.Avatar.Length > 0)
+            if (user.Avatar is not null)
             {
                 string wwwRothPath = _enviroment.WebRootPath;
                 string fileExtension = Path.GetExtension(user.Avatar.FileName);
@@ -58,7 +58,7 @@ namespace RezerwacjaPOL.Controllers
                     return filePathLocal;
                 }
             }
-            else return "default.png";
+            else return "defaultAvatar.png";
         }
 
         static void InsertUser(AuctionContext context, UserViewModel user)
