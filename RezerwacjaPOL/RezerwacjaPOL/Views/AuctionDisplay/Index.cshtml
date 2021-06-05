@@ -58,8 +58,24 @@
 
 
     </div>
+    <div class="addedByContainer">
 
-  
+        <h5>Dodano przez:</h5>
+        <hr />
+
+        <img src="~/Files/@Model.User.AvatarPath" class="AddedByUserAvatar" />
+        <div style="float:left; padding-left:10px">
+            <h5>@Model.User.FirstName @Model.User.LastName</h5>
+            <h6> @Model.User.Email</h6>
+
+        </div>
+        <br />
+
+
+        <div style="clear:both;"></div>
+
+    </div>
+
 
 </div>
 
