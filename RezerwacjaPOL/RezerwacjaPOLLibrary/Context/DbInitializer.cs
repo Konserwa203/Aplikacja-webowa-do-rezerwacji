@@ -19,11 +19,11 @@ namespace RezerwacjaPOLLibrary.Context
 
             var users = new User[]
             {
-                new User { FirstName = "Jan", LastName = "Kowalski", Email = "jan@jan.pl",Password = "jan123"},
-                new User { FirstName = "Andrzej", LastName = "Nowak", Email = "andzrej@nowak.pl",Password = "adrzej123"},
-                new User { FirstName = "Mirosław", LastName = "Kowalski", Email = "mirek@jan.pl",Password = "mirek123"},
-                new User { FirstName = "Dorota", LastName = "Tutor", Email = "dorota@tutor.pl",Password = "dorota123"},
-                new User { FirstName = "Katarzyna", LastName = "Kowalska", Email = "katarzyna@kowal.pl",Password = "kasia123"},
+                new User { FirstName = "Jan", LastName = "Kowalski", Email = "jan@jan.pl",Password = "jan123", AvatarPath="defaultAvatar.png"},
+                new User { FirstName = "Andrzej", LastName = "Nowak", Email = "andzrej@nowak.pl",Password = "adrzej123", AvatarPath="defaultAvatar.png"},
+                new User { FirstName = "Mirosław", LastName = "Kowalski", Email = "mirek@jan.pl",Password = "mirek123", AvatarPath="defaultAvatar.png"},
+                new User { FirstName = "Dorota", LastName = "Tutor", Email = "dorota@tutor.pl",Password = "dorota123", AvatarPath="defaultAvatar.png"},
+                new User { FirstName = "Katarzyna", LastName = "Kowalska", Email = "katarzyna@kowal.pl",Password = "kasia123", AvatarPath="defaultAvatar.png"},
             };
 
             context.AddRange(users);
