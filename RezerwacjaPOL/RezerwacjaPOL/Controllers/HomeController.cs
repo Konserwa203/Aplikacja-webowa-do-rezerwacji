@@ -36,7 +36,7 @@ namespace RezerwacjaPOL.Controllers
                     PhotosPath = x.PhotosPath,
                     Description = x.Description,
                     Id = x.Id
-                })
+                }).OrderByDescending(x=>x.DateAdded)
             };
             return View(data);
         }
