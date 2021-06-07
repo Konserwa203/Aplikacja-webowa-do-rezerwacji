@@ -7,6 +7,6 @@ namespace RezerwacjaPOL.Models
 {
     public class HomeIndexViewModel
     {
-        public IEnumerable<AuctionViewModel> Auctions { get; set; }
+        public AuctionListViewModel Auctions { get; set; }
     }
 }
