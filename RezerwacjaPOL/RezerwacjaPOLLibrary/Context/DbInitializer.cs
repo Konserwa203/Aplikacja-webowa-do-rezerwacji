@@ -37,7 +37,10 @@ namespace RezerwacjaPOLLibrary.Context
                 new AuctionCategory{Name="Sprzątanie"},
                 new AuctionCategory{Name="Ogrodnik"},
                 new AuctionCategory{Name="Hydraulik"},
-                new AuctionCategory{Name="Elektryk"}
+                new AuctionCategory{Name="Elektryk"},
+                new AuctionCategory{Name="DJ"},
+                new AuctionCategory{Name="Opiekun"},
+                new AuctionCategory{Name="Malarz"}
             };
             context.AddRange(categories);
             context.SaveChanges();
