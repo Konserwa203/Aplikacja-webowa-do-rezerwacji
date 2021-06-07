@@ -32,7 +32,12 @@ namespace RezerwacjaPOLLibrary.Context
             {
                 new AuctionCategory{Name="Fryzjer"},
                 new AuctionCategory{Name="Tynkarz"},
-                new AuctionCategory{Name="Grafik"}
+                new AuctionCategory{Name="Grafik"},
+                new AuctionCategory{Name="Kosmetyczka"},
+                new AuctionCategory{Name="Sprzątanie"},
+                new AuctionCategory{Name="Ogrodnik"},
+                new AuctionCategory{Name="Hydraulik"},
+                new AuctionCategory{Name="Elektryk"}
             };
             context.AddRange(categories);
             context.SaveChanges();
