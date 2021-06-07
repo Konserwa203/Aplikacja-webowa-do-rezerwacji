@@ -22,22 +22,29 @@ namespace RezerwacjaPOL.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int s = 10, int page = 1)
         {
             var getData = _context.Auctions.Include(x => x.PhotosPath).ThenInclude(x => x.Auction.Category);
             var data = new HomeIndexViewModel
             {
-                Auctions = getData.Select(x => new AuctionViewModel
+                Auctions = new AuctionListViewModel
                 {
-                    Title = x.Title,
-                    ThumbnailPhotoDir = x.PhotosPath.Select(x => x.PhotoPath).FirstOrDefault(),
-                    Category = x.Category,
-                    DateAdded = x.CreatedOn,
-                    PhotosPath = x.PhotosPath,
-                    Description = x.Description,
-                    Id = x.Id
-                }).OrderByDescending(x=>x.DateAdded)
+                   
+                    CurrentPage = page,
+                    PageSize = s
+                }
             };
+            data.Auctions.Auctions = getData.Select(x => new AuctionViewModel
+            {
+                Title = x.Title,
+                ThumbnailPhotoDir = x.PhotosPath.Select(x => x.PhotoPath).FirstOrDefault(),
+                Category = x.Category,
+                DateAdded = x.CreatedOn,
+                PhotosPath = x.PhotosPath,
+                Description = x.Description,
+                Id = x.Id
+            }).Skip((page - 1) * s).Take(s).OrderByDescending(x => x.DateAdded);
+            data.Auctions.TotalPages = _context.Auctions.AsNoTracking().Count();
             return View(data);
         }
 
