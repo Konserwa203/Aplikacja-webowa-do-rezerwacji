@@ -76,17 +76,20 @@ namespace RezerwacjaPOL.Controllers
                 .Where(x => titles.Contains(x.Title)).ToList();
             var data = new HomeIndexViewModel
             {
-                Auctions = getData.Select(x => new AuctionViewModel
+                Auctions = new AuctionListViewModel
                 {
-                    Title = x.Title,
-                    ThumbnailPhotoDir = x.PhotosPath.Select(x => x.PhotoPath).FirstOrDefault(),
-                    Category = x.Category,
-                    DateAdded = x.CreatedOn,
-                    PhotosPath = x.PhotosPath,
-                    Description = x.Description,
-                    Id = x.Id
-                })
-            };           
+                    Auctions = getData.Select(x => new AuctionViewModel
+                    {
+                        Title = x.Title,
+                        ThumbnailPhotoDir = x.PhotosPath.Select(x => x.PhotoPath).FirstOrDefault(),
+                        Category = x.Category,
+                        DateAdded = x.CreatedOn,
+                        PhotosPath = x.PhotosPath,
+                        Description = x.Description,
+                        Id = x.Id
+                    }).OrderByDescending(x => x.DateAdded),
+                }
+            };
             return data;
         }
     }
