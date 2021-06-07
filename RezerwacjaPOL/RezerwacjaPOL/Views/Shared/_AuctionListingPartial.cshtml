@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RezerwacjaPOL.Models.AuctionViewModel>;
+﻿@model AuctionListViewModel;
 
 <link href="~/css/auctionListing.css" rel="stylesheet" />
 <style>
@@ -7,7 +7,7 @@
     }
 </style>
 <div class="container">
-@foreach (var item in Model)
+@foreach (var item in Model.Auctions)
 {
     <table class="table table-sm table-hover" style="width:100%;  box-shadow: 2px 2px 2px gray;">
         <tbody>
@@ -47,4 +47,12 @@
         </tbody>
     </table>
 }
+    <paging class-paging-control-div="col" class-paging-control="pagination justify-content-center" page-no="@Model.CurrentPage"
+            page-size="@Model.PageSize"
+            total-records="@Model.TotalPages"
+            query-string-key-page-no="page"
+            page-size-dropdown-items="5-10-15"
+            text-total-records="auctions">
+            
+    </paging>
 </div>
