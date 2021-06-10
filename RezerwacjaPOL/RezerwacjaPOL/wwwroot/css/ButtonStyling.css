@@ -1,0 +1,21 @@
+﻿.MyButton {
+    background-color: rgb(0, 47, 52);
+    border: 5px solid rgb(0, 47, 52);
+    padding:10px 35px;
+    text-align:right;
+}
+
+.MyReturnButton {
+    margin-right: 35px;
+    color: black;
+    text-decoration: underline solid 1px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.MyReturnButton:hover {
+    
+    color:red;
+    text-decoration: underline solid 1px;
+  
+}
