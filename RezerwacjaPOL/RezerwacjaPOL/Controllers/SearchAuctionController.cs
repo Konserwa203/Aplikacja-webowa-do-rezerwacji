@@ -74,6 +74,7 @@ namespace RezerwacjaPOL.Controllers
             //var auctions = _context.Auctions.Where(x => titles.Contains(x.Title)).ToList();
             var getData = _context.Auctions.Include(x => x.PhotosPath).ThenInclude(x => x.Auction.Category)
                 .Where(x => titles.Contains(x.Title)).ToList();
+          
             var data = new HomeIndexViewModel
             {
                 Auctions = new AuctionListViewModel
@@ -87,7 +88,7 @@ namespace RezerwacjaPOL.Controllers
                         PhotosPath = x.PhotosPath,
                         Description = x.Description,
                         Id = x.Id
-                    }).OrderByDescending(x => x.DateAdded),
+                    }).OrderByDescending(x => x.DateAdded).ToList(),
                 }
             };
             return data;

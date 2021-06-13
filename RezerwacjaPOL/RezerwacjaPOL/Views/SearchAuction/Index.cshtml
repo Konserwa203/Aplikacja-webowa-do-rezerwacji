@@ -10,9 +10,12 @@
     <input type="submit" value="Search" />
 </form>
 <h3>@ViewData["blad"]</h3>
+@{ 
+    var du = ViewData["auctions"] as AuctionListViewModel;
+}
 <div id="opinions">
     @*<partial name="_AuctionListingPartial" model="@ViewData["auctions"] as IEnumerable<AuctionViewModel>" />*@
-    @await Html.PartialAsync("_AuctionListingPartial", ViewData["auctions"] as IEnumerable<AuctionViewModel>)
+    @await Html.PartialAsync("_AuctionListingPartial", du)
 </div>
 
 @section Scripts{

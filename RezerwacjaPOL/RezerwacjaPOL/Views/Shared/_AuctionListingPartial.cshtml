@@ -7,7 +7,7 @@
     }
 </style>
 <div class="container">
-@foreach (var item in Model.Auctions)
+@foreach (var item in Model.Auctions.ToList())
 {
     <table class="table table-sm table-hover" style="width:100%;  box-shadow: 2px 2px 2px gray;">
         <tbody>
