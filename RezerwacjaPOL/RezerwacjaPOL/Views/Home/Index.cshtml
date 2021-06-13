@@ -6,6 +6,18 @@
 <div class="text-center">
     <h1 class="display-4">Witaj na Pan Book!</h1>
     <p>Doświadczeni specjaliści w twojej okolicy!</p>
+
+    <form asp-controller="SearchAuction" asp-action="IndexFind" method="post"
+          data-ajax="true"
+          data-ajax-method="POST"
+          data-ajax-mode="replace"
+          data-ajax-update="#opinions"
+          data-ajax-sukcess="clear"
+          id="form">
+        <input type="text" placeholder="XD" name="query" />
+        <input type="submit" value="Search" />
+    </form>
+
     <div class="mx-4">
         <partial name="_AuctionListingPartial" model="@Model.Auctions" />
     </div>
