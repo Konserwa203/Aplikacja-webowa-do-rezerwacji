@@ -5,3 +5,29 @@
 .navbar-custom {
     background-color: #ffd500 !important;
 }
+
+.searchSubmit{
+
+    width:50px;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-left:0;
+    justify-content:start;
+    float:left;
+ 
+}
+.searchQuery {
+    margin-right: 0;
+    min-width: 30em;
+    padding:0px;
+    height: 51px;
+    float:left;
+}
+
+.search {
+    width: 75%;
+    margin: auto;
+    display: block ruby;
+    margin-bottom:25px;
+}
