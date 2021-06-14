@@ -13,7 +13,6 @@ namespace RezerwacjaPOLLibrary.Validators
     {
         public AuctionVMValidator()
         {
-
             RuleFor(x => x.Title).NotEmpty().Length(10, 70);
             RuleFor(x => x.Description).NotEmpty().Length(20, 1000);
             RuleFor(x => x.PhoneNumber).NotEmpty().Length(9, 12);
