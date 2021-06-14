@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Nest;
 using RezerwacjaPOLLibrary.Context;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace RezerwacjaPOL
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<AuctionContext>();
+                    var context = services.GetRequiredService<AuctionContext>();              
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
