@@ -8,7 +8,7 @@
 
 .searchSubmit{
 
-    width:30px;
+    width:50px;
     border-top: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
@@ -21,7 +21,7 @@
     margin-right: 0;
     min-width: 30em;
     padding:0px;
-    height: 31px;
+    height: 51px;
     float:left;
 }
 
