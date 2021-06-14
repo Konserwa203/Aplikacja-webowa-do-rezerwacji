@@ -2,10 +2,30 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
+<link href="~/css/CustomStyle.css" rel="stylesheet" />
 <div class="text-center">
     <h1 class="display-4">Witaj na Pan Book!</h1>
     <p>Doświadczeni specjaliści w twojej okolicy!</p>
+
+
+    <div class="search">
+
+        <form asp-controller="SearchAuction" asp-action="IndexFind" method="post"
+              data-ajax="true"
+              data-ajax-method="POST"
+              data-ajax-mode="replace"
+              data-ajax-update="#opinions"
+              data-ajax-sukcess="clear"
+              id="form">
+
+            <input type="text" placeholder="Wyszukaj interesującą Cie usługę" name="query" class="searchQuery" />
+            <input type="image" src="~/sic.png" value="Search" class="searchSubmit"  style="width:20px;height:20px"/>
+
+        </form>
+    </div>
+
+    <div style="clear:both;"></div>
+
     <div class="mx-4">
         <partial name="_AuctionListingPartial" model="@Model.Auctions" />
     </div>

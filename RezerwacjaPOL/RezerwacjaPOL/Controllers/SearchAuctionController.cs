@@ -28,8 +28,8 @@ namespace RezerwacjaPOL.Controllers
                       
                 results = _client.Search<SearchEngineModel>(s => s
                     .Query(q => q
-                        .MatchAll()));   
-            
+                        .MatchAll()));
+
             ViewData["auctions"] = Ceavog(results).Auctions;
             return View("Index",results);
         }
@@ -58,12 +58,43 @@ namespace RezerwacjaPOL.Controllers
                         .MatchAll()
                     )
                 );
-                ViewData["blad"]= "Niestyty nie znaleziono tego czego szukasz";
+                ViewData["blad"] = "Niestety nie znaleziono tego czego szukasz";
             }
-          
-           // ViewData["auctions"] = Ceavog(results).Auctions;
+
+            // ViewData["auctions"] = Ceavog(results).Auctions;
             return PartialView("_AuctionListingPartial", Ceavog(results).Auctions);
         }
+        [HttpPost]
+        public IActionResult IndexFind(string query)
+        {
+            ViewData["blad"] = "";
+            ISearchResponse<SearchEngineModel> results;
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                results = _client.Search<SearchEngineModel>(s => s
+                .Query(q => q
+                .Match(t => t
+                .Field(f => f.Title)
+                .Query(query)
+                     )
+                   )
+                );
+            }
+            else
+            {
+                results = _client.Search<SearchEngineModel>(s => s
+                    .Query(q => q
+                        .MatchAll()
+                    )
+                );
+                ViewData["blad"] = "Niestety nie znaleziono tego czego szukasz";
+            }
+
+            ViewData["auctions"] = Ceavog(results).Auctions;
+            return View("Index",results);
+         
+        }
+
         static private HomeIndexViewModel Ceavog(ISearchResponse<SearchEngineModel> results)
         {
             var titles = new List<string>();
