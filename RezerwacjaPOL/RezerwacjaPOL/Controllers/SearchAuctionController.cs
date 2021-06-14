@@ -28,8 +28,8 @@ namespace RezerwacjaPOL.Controllers
                       
                 results = _client.Search<SearchEngineModel>(s => s
                     .Query(q => q
-                        .MatchAll()));   
-            
+                        .MatchAll()));
+
             ViewData["auctions"] = Ceavog(results).Auctions;
             return View("Index",results);
         }
@@ -52,7 +52,7 @@ namespace RezerwacjaPOL.Controllers
                 );
             }
             else
-            {
+            { 
                 results = _client.Search<SearchEngineModel>(s => s
                     .Query(q => q
                         .MatchAll()
@@ -60,9 +60,9 @@ namespace RezerwacjaPOL.Controllers
                 );
                 ViewData["blad"]= "Niestyty nie znaleziono tego czego szukasz";
             }
-          
-           // ViewData["auctions"] = Ceavog(results).Auctions;
-            return PartialView("_AuctionListingPartial", Ceavog(results).Auctions);
+
+             ViewData["auctions"] = Ceavog(results).Auctions;
+             return PartialView("_AuctionListingPartial", results);
         }
         [HttpPost]
         public IActionResult IndexFind(string query)
@@ -91,7 +91,8 @@ namespace RezerwacjaPOL.Controllers
             }
 
             ViewData["auctions"] = Ceavog(results).Auctions;
-            return View("Index", results);
+            return RedirectToAction("Index",results);
+         
         }
 
         static private HomeIndexViewModel Ceavog(ISearchResponse<SearchEngineModel> results)
