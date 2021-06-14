@@ -91,7 +91,7 @@ namespace RezerwacjaPOL.Controllers
             }
 
             ViewData["auctions"] = Ceavog(results).Auctions;
-            return RedirectToAction("Index");
+            return View("Index",results);
          
         }
 
