@@ -52,17 +52,17 @@ namespace RezerwacjaPOL.Controllers
                 );
             }
             else
-            { 
+            {
                 results = _client.Search<SearchEngineModel>(s => s
                     .Query(q => q
                         .MatchAll()
                     )
                 );
-                ViewData["blad"]= "Niestyty nie znaleziono tego czego szukasz";
+                ViewData["blad"] = "Niestety nie znaleziono tego czego szukasz";
             }
 
-             ViewData["auctions"] = Ceavog(results).Auctions;
-             return PartialView("_AuctionListingPartial", results);
+            // ViewData["auctions"] = Ceavog(results).Auctions;
+            return PartialView("_AuctionListingPartial", Ceavog(results).Auctions);
         }
         [HttpPost]
         public IActionResult IndexFind(string query)
@@ -87,11 +87,11 @@ namespace RezerwacjaPOL.Controllers
                         .MatchAll()
                     )
                 );
-                ViewData["blad"] = "Niestyty nie znaleziono tego czego szukasz";
+                ViewData["blad"] = "Niestety nie znaleziono tego czego szukasz";
             }
 
             ViewData["auctions"] = Ceavog(results).Auctions;
-            return RedirectToAction("Index",results);
+            return RedirectToAction("Index");
          
         }
 
