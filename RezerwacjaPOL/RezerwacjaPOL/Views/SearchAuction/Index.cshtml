@@ -14,15 +14,16 @@
                   id="form">
 
                 <input type="text" placeholder="Wyszukaj interesującą Cie usługę" name="query" class="searchQuery" />
-                <input type="image" src="~/sic.png" value="Search" class="searchSubmit" style="width:20px;height:20px"/>
+                <input type="image" src="~/sic.png" value="Search" class="searchSubmit" />
 
             </form>
         </div>
+
+        <h3>@ViewData["blad"]</h3>
+        @{
+            var du = ViewData["auctions"] as AuctionListViewModel;
+        }
     </div>
-    <h3>@ViewData["blad"]</h3>
-    @{
-        var du = ViewData["auctions"] as AuctionListViewModel;
-    }
     <div id="opinions">
         @*<partial name="_AuctionListingPartial" model="@ViewData["auctions"] as IEnumerable<AuctionViewModel>" />*@
         @await Html.PartialAsync("_AuctionListingPartial", du)
